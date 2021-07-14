@@ -11,50 +11,96 @@ html, body {
     radial-gradient(ellipse at bottom, #bf1c63a3, #28b81b);
     height: 100vh;
     overflow: hidden;
-    padding: 10px;
+    /* padding: 10px; */
 }
 
 main {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-evenly;
+    /* align-items: center; */
+    /* justify-content:center; */
 }
 
-.key-element {
-    margin: 10px;
+.key-element:not(#chat) {
+    margin: 1.5vh auto;
     border-radius: 8px;
 }
+
 
 #logo {
     background: #28b81b;
     width: 20vw;
+    
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+#logo.key-element {
+    margin-right: 0;
+}
+
+#userlist.key-element {
+    margin-right: 0;
+}
+
 
 nav {
     background: #0d3509;
-    width: 70vw;
+    width: 75vw;
     height: 20vh;
 }
 
 #userlist {
     background: #331bb8;
     width: 20vw;
+    height: 50vh;
+    margin-right: 0;
 }
 
 #chat-frame {
     background: #28b81b;
-    width: 70vw;
+    width: 75vw;
+    height: 50vh;
+
+    display: flex;
+    justify-content: flex-start;
 }
 
 #chat {
     background: white;
-    width: 50vw;
-    height: 20vh;
+    width: 75%;
+    height: 100%;
+    border-radius: 8px;
 }
 
 #input-panel {
     background: #e1da13;
-    width: 90vw;
+    width: 96.5vw;
     height: 20vh;
 }
+
+
+
+
+/* +++++++++++++++++  Top  +++++++++++++++++++++ */
+
+#logo h1 {
+}
+
+
+
+
+#userlist ul {
+    list-style: none;
+    margin: 10px;
+}
+
+
+
+
+
+
+
