@@ -1,0 +1,60 @@
+*, *::after,  *::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* border: black 1px solid; */
+}
+
+html, body {
+    background: radial-gradient(ellipse at top, #5489c2, #8c3eb33f),
+    linear-gradient(140deg, rgb(108, 108, 108), transparent 70% 100%),
+    radial-gradient(ellipse at bottom, #bf1c63a3, #28b81b);
+    height: 100vh;
+    overflow: hidden;
+    padding: 10px;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.key-element {
+    margin: 10px;
+    border-radius: 8px;
+}
+
+#logo {
+    background: #28b81b;
+    width: 20vw;
+}
+
+nav {
+    background: #0d3509;
+    width: 70vw;
+    height: 20vh;
+}
+
+#userlist {
+    background: #331bb8;
+    width: 20vw;
+}
+
+#chat-frame {
+    background: #28b81b;
+    width: 70vw;
+}
+
+#chat {
+    background: white;
+    width: 50vw;
+    height: 20vh;
+}
+
+#input-panel {
+    background: #e1da13;
+    width: 90vw;
+    height: 20vh;
+}
