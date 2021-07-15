@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -14,11 +17,11 @@
     <div id="logo" class="key-element">
         <h1>FlashChat</h1>
     </div>
-    <nav class="key-element">
+    <nav class="key-element basic-box">
         
     </nav>
 
-    <div id="userlist" class="key-element">
+    <div id="userlist" class="key-element basic-box">
         <ul>
             <li>Johny Walker</li>
             <li>Johny Walker</li>
@@ -29,10 +32,19 @@
     <div id="chat-frame" class="key-element">
         <div id="chat" class="key-element">
         </div>
-        <div id="chatlist"></div>
+        <div id="chatlist">
+            <div class="button checked">Main chat</div>
+            <div class="button">Johny Walker</div>
+            <div class="button">Martin Eden</div>
+            <div class="button">Elon Musk</div>
+        </div>
     </div>
-    <div id="input-panel" class="key-element">
-
+    <div id="input-panel" class="key-element basic-box">
+        <div class="button text-stylers">B</div>
+        <div class="button text-stylers">U</div>
+        <div class="button text-stylers">I</div>
+        <input type="text" id="inputtxt" size="60">
+        <button class="button">Send</button>
     </div>
 </main>
 

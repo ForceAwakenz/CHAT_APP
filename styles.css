@@ -12,14 +12,14 @@ html, body {
     height: 100vh;
     overflow: hidden;
     /* padding: 10px; */
+    font-family: 'Roboto', sans-serif;
+    z-index: -10;
 }
 
 main {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    /* align-items: center; */
-    /* justify-content:center; */
 }
 
 .key-element:not(#chat) {
@@ -27,11 +27,21 @@ main {
     border-radius: 8px;
 }
 
+.button {
+    padding: 20px;
+    text-decoration: none;
+    color: #283887;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    margin: 15px 0;
+    background: #5c9d5e;
+    text-align: center;
+}
+
 
 #logo {
     background: #28b81b;
     width: 20vw;
-    
     
     display: flex;
     justify-content: center;
@@ -54,19 +64,19 @@ nav {
 }
 
 #userlist {
-    background: #331bb8;
     width: 20vw;
     height: 50vh;
     margin-right: 0;
+
 }
 
 #chat-frame {
-    background: #28b81b;
     width: 75vw;
     height: 50vh;
 
     display: flex;
     justify-content: flex-start;
+    background: linear-gradient(30deg, #9fb5a7e5, #54966Ecd), linear-gradient(#fff, #fff);
 }
 
 #chat {
@@ -77,9 +87,11 @@ nav {
 }
 
 #input-panel {
-    background: #e1da13;
     width: 96.5vw;
     height: 20vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 
@@ -88,19 +100,67 @@ nav {
 /* +++++++++++++++++  Top  +++++++++++++++++++++ */
 
 #logo h1 {
+    color: white;
 }
-
-
-
 
 #userlist ul {
     list-style: none;
     margin: 10px;
 }
 
+.basic-box {
+    background: radial-gradient(#54966E, #136534);
+    border: #0d5706 1px solid;
+}
+
+
+
+
+/* +++++++++++++++++  Center  +++++++++++++++++++++ */
+
+#chatlist > .button {
+    width: 18vw;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+#chatlist > .button:not(.checked):hover {
+    background: hsl(122, 26%, 79%);
+}
+
+#chatlist > .button.checked {
+    background: white;
+}
 
 
 
 
 
 
+
+/* +++++++++++++++++  Bottom  +++++++++++++++++++++ */
+
+#inputtxt {
+    font-size: 1.7rem;
+    border-radius: 8px;
+    border: 1px solid #0d5706;
+    size: 300;
+}
+
+#input-panel > .button {
+    border: 1px solid #0d5706;
+}
+
+#input-panel > .button:hover {
+    background: hsl(122, 26%, 79%);
+}
+
+#input-panel .text-stylers {
+    width: 3rem;
+    height: 3rem;
+    text-align: center;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
