@@ -40,7 +40,7 @@ main {
 
 
 #logo {
-    background: #28b81b;
+    background: radial-gradient(rgb(165, 0, 198),rgb(70, 0, 84));
     width: 20vw;
     
     display: flex;
@@ -80,7 +80,7 @@ nav {
 }
 
 #chat {
-    background: white;
+    background: linear-gradient(90deg, rgb(194, 194, 194), #fff);
     width: 75%;
     height: 100%;
     border-radius: 8px;
@@ -106,6 +106,14 @@ nav {
 #userlist ul {
     list-style: none;
     margin: 10px;
+}
+
+#userlist li {
+    color:#283887;
+}
+
+#userlist li {
+    border-bottom: #0d3509 dotted 1px;
 }
 
 .basic-box {
