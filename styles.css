@@ -200,10 +200,13 @@ nav {
 
 #send_btn {
     background: radial-gradient(rgb(165, 0, 198),rgb(70, 0, 84));
+    color: white;
+    width: 12vw;
 }
 
 #input-panel  #send_btn.button:hover {
-    background: hsl(307, 25%, 79%);
+    background: radial-gradient(rgb(215, 188, 212), rgb(70, 0, 84) );
+    color: #283887;
 }
 
 
