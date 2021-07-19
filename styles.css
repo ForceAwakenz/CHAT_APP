@@ -92,6 +92,7 @@ nav {
     display: flex;
     flex-direction: row;
     align-items: center;
+    /* justify-content: space-between; */
 }
 
 
@@ -149,27 +150,62 @@ nav {
 
 /* +++++++++++++++++  Bottom  +++++++++++++++++++++ */
 
-#inputtxt {
+#stylers-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20vw;
+}
+
+#send-btn-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 18vw;
+    margin-right: 0.75vw;
+}
+
+#txt {
+    flex-basis: 56.25vw;
+    display: flex;
+    /* justify-content: flex-start; */
+    margin-left: 3vw;
+}
+
+#txt > #inputtxt {
     font-size: 1.7rem;
     border-radius: 8px;
     border: 1px solid #0d5706;
-    size: 300;
+    flex-basis: 56.25vw;
 }
 
-#input-panel > .button {
+#stylers-wrapper > .button {
     border: 1px solid #0d5706;
 }
 
-#input-panel > .button:hover {
+#stylers-wrapper > .button:hover {
     background: hsl(122, 26%, 79%);
 }
 
-#input-panel .text-stylers {
+
+#stylers-wrapper .text-stylers {
     width: 3rem;
     height: 3rem;
+    margin: 0.5vw;
     text-align: center;
     padding: 0.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+#send_btn {
+    background: radial-gradient(rgb(165, 0, 198),rgb(70, 0, 84));
+}
+
+#input-panel  #send_btn.button:hover {
+    background: hsl(307, 25%, 79%);
+}
+
+
+
+
