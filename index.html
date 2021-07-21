@@ -19,7 +19,7 @@
         <h1>FlashChat</h1>
     </div>
     <nav class="key-element basic-box">
-        
+        <p>logged in as: </p>
     </nav>
 
     <div id="userlist_box" class="key-element basic-box">
@@ -38,13 +38,6 @@
             <div class="button">Elon Musk</div>
             <div class="button">Johny Walker</div>
             <div class="button">Martin Eden</div>
-            <div class="button">Elon Musk</div>
-            <div class="button">Johny Walker</div>
-            <div class="button">Martin Eden</div>
-            <div class="button">Elon Musk</div>
-            <div class="button">Johny Walker</div>
-            <div class="button">Martin Eden</div>
-            <div class="button">Elon Musk</div>
         </div>
     </div>
     <div id="input-panel" class="key-element basic-box">
@@ -66,13 +59,13 @@
 
 <div class="modal modal_hidden" id="register_box">
     <form id="register" class="basic-box key-element">
-        <h2 style="color: red;">Please log in or register</h2>
-        <label for="nickname">Your Nickname</label>
-        <input type="text" name="nickname" id="nickname">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" required>
-        <input id="submitBtn" type="submit" value="submit">
-        <a href="#">Log-in</a>
+        <h2>Please register</h2>
+        <label for="nickname_reg">Your Nickname</label>
+        <input type="text" name="nickname" id="nickname_reg" required>
+        <label for="password_reg">Password</label>
+        <input type="password" name="password" id="password_reg" required>
+        <input id="submit_btn_reg" type="button" value="submit">
+        <a href="#" id="login_link">Log-in</a>
     </form>
 </div>
 
@@ -80,11 +73,11 @@
     <form id="login" class="basic-box key-element">
         <h2>Please log in or register</h2>
         <label for="nickname">Your Nickname</label>
-        <input type="text" name="nickname" id="nickname">
+        <input type="text" name="nickname" id="nickname" required>
         <label for="password">Password</label>
         <input type="password" name="password" id="password" required>
-        <input id="submitBtn" type="submit" value="submit">
-        <a href="#" id="register_btn">Register</a>
+        <input id="submit_btn" type="button" value="submit">
+        <a href="#" id="register_link">Register</a>
     </form>
 </div>
 
