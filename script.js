@@ -130,7 +130,8 @@ function addUser(login, password) {
     xhr.send(JSON.stringify(user))
 
     xhr.onload = function () {
-        if (!JSON.parse(xhr.response).user_id) {
+        console.log(JSON.parse(xhr.response));
+        if (!JSON.parse(xhr.response).id) {
             alert('Failed to register');
         }else if (xhr.status !== 200) {
             alert(xhr.status + ': ' + xhr.statusText);
