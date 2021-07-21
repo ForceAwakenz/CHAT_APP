@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>FlashChat</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script async src="script.js"></script>
 </head>
 <body>
     
@@ -21,12 +22,10 @@
         
     </nav>
 
-    <div id="userlist" class="key-element basic-box">
-        <ul>
+    <div id="userlist_box" class="key-element basic-box">
+        <ul id="userlist">
             <li>Johny Walker</li>
-            <li>Johny Walker</li>
-            <li>Johny Walker</li>
-            <li>Johny Walker</li>
+            <li>Elon Musk</li>
         </ul>
     </div>
     <div id="chat-frame" class="key-element">
@@ -34,6 +33,15 @@
         </div>
         <div id="chatlist">
             <div class="button checked">Main chat</div>
+            <div class="button">Johny Walker</div>
+            <div class="button">Martin Eden</div>
+            <div class="button">Elon Musk</div>
+            <div class="button">Johny Walker</div>
+            <div class="button">Martin Eden</div>
+            <div class="button">Elon Musk</div>
+            <div class="button">Johny Walker</div>
+            <div class="button">Martin Eden</div>
+            <div class="button">Elon Musk</div>
             <div class="button">Johny Walker</div>
             <div class="button">Martin Eden</div>
             <div class="button">Elon Musk</div>
@@ -53,6 +61,32 @@
         </div>
     </div>
 </main>
+
+
+
+<div class="modal modal_hidden" id="register_box">
+    <form id="register" class="basic-box key-element">
+        <h2 style="color: red;">Please log in or register</h2>
+        <label for="nickname">Your Nickname</label>
+        <input type="text" name="nickname" id="nickname">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required>
+        <input id="submitBtn" type="submit" value="submit">
+        <a href="#">Log-in</a>
+    </form>
+</div>
+
+<div class="modal" id="login_box">
+    <form id="login" class="basic-box key-element">
+        <h2>Please log in or register</h2>
+        <label for="nickname">Your Nickname</label>
+        <input type="text" name="nickname" id="nickname">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required>
+        <input id="submitBtn" type="submit" value="submit">
+        <a href="#" id="register_btn">Register</a>
+    </form>
+</div>
 
 </body>
 </html>
