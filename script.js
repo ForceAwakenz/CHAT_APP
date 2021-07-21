@@ -11,6 +11,7 @@ const nicknameTxt = document.getElementById('nickname');
 const passwordTxt = document.getElementById('password');
 const nicknameRegTxt = document.getElementById('nickname_reg');
 const passwordRegTxt = document.getElementById('password_reg');
+const loggedInSpan = document.getElementById('loggedin');
 
 
 if (!!registerLink) {
@@ -79,16 +80,16 @@ setInterval(renewUsersList, 10000);
 
 function login(login, password) {
 
-    let usr = {};
-    usr.username = login;
-    usr.password = password;
+    let user = {};
+    user.username = login;
+    user.password = password;
 
     let xhr = new XMLHttpRequest();
 
         xhr.open('POST', 'https://studentschat.herokuapp.com/users/login');
         xhr.setRequestHeader('Content-Type', 'application/json');
 
-        xhr.send(JSON.stringify(usr));
+        xhr.send(JSON.stringify(user));
 
         xhr.onload = function () {
             if (xhr.status !== 200) {
@@ -99,6 +100,7 @@ function login(login, password) {
                     console.log(userObject);
                     if (!!userObject[0].user_id) {
                         loginModal.style.display = 'none';
+                        loggedInSpan.innerText = userObject[0].username;
                     }
                 } catch(e) {
                     alert('Not valid input: ' + e.message);
@@ -115,9 +117,9 @@ function login(login, password) {
 
 function addUser(login, password) {
 
-    let usr = {};
-    usr.username = login;
-    usr.password = password;
+    let user = {};
+    user.username = login;
+    user.password = password;
 
     let xhr = new XMLHttpRequest();
 
@@ -125,7 +127,7 @@ function addUser(login, password) {
 
     xhr.setRequestHeader('Content-Type', 'application/json');
 
-    xhr.send(JSON.stringify(usr))
+    xhr.send(JSON.stringify(user))
 
     xhr.onload = function () {
         if (!JSON.parse(xhr.response).user_id) {

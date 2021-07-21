@@ -4,7 +4,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  /* border: black 1px solid; */
 }
 
 a {
@@ -18,7 +17,6 @@ body {
     radial-gradient(ellipse at bottom, #bf1c63a3, #28b81b);
   height: 100vh;
   overflow: hidden;
-  /* padding: 10px; */
   font-family: "Roboto", sans-serif;
   z-index: -10;
 }
@@ -48,7 +46,6 @@ main {
 #logo {
   background: radial-gradient(#a500c6, #460054);
   width: 20vw;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,7 +76,6 @@ nav {
 #chat-frame {
   width: 75vw;
   height: 50vh;
-
   display: flex;
   justify-content: flex-start;
   background: linear-gradient(30deg, #9fb5a7e5, #54966ecd),
@@ -103,7 +99,6 @@ nav {
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* justify-content: space-between; */
 }
 
 .modal {
@@ -116,15 +111,10 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* display: none; */
 }
 
 .modal_hidden {
   display: none;
-}
-
-.modal_visible {
-  display: flex;
 }
 
 /* +++++++++++++++++  Top  +++++++++++++++++++++ */
@@ -156,6 +146,13 @@ nav {
 .basic-box {
   background: radial-gradient(#54966e, #136534);
   border: #0d5706 1px solid;
+}
+
+nav {
+  color: white;
+  padding: 10px;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 /* +++++++++++++++++  Center  +++++++++++++++++++++ */
@@ -253,5 +250,32 @@ nav {
 #register h2 {
   color: white;
   text-align: center;
-  margin-top: 1.2rem;
+  margin: 1.2rem 0 1.7rem;
+}
+
+.modal :is(input, a) {
+  margin: 0 0 1.2vh;
+}
+
+.modal label {
+  margin-bottom: 0.5vh;
+}
+
+.modal input[type="button"] {
+  margin-top: 0.8vh;
+  padding: 0.4vh 2.9vh;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+#login,
+#register {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal a {
+  font-size: 0.9rem;
 }
