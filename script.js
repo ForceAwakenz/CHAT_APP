@@ -1,5 +1,7 @@
 'use strict'
 
+var currentUser;
+
 const userList = document.getElementById('userlist');
 const registerLink = document.getElementById('register_link');
 const loginLink = document.getElementById('login_link');
@@ -12,6 +14,16 @@ const passwordTxt = document.getElementById('password');
 const nicknameRegTxt = document.getElementById('nickname_reg');
 const passwordRegTxt = document.getElementById('password_reg');
 const loggedInSpan = document.getElementById('loggedin');
+const textInput = document.getElementById('inputtxt');
+const sendBtn = document.getElementById('send_btn');
+
+sendBtn.addEventListener('click', () => sendMessage(textInput.value, loggedInSpan.textContent))
+
+textInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        sendMessage(textInput.value, currentUser)
+    }
+});
 
 
 if (!!registerLink) {
@@ -100,7 +112,9 @@ function login(login, password) {
                     console.log(userObject);
                     if (!!userObject[0].user_id) {
                         loginModal.style.display = 'none';
-                        loggedInSpan.innerText = userObject[0].username;
+                        currentUser = userObject[0].username;
+                        // loggedInSpan.innerText = userObject[0].username;
+                        loggedInSpan.innerText = currentUser;
                     }
                 } catch(e) {
                     alert('Not valid input: ' + e.message);
@@ -127,7 +141,7 @@ function addUser(login, password) {
 
     xhr.setRequestHeader('Content-Type', 'application/json');
 
-    xhr.send(JSON.stringify(user))
+    xhr.send(JSON.stringify(user));
 
     xhr.onload = function () {
         console.log(JSON.parse(xhr.response));
@@ -135,6 +149,8 @@ function addUser(login, password) {
             alert('Failed to register');
         }else if (xhr.status !== 200) {
             alert(xhr.status + ': ' + xhr.statusText);
+        } else if (xhr.status == 200) {
+            login(JSON.parse(xhr.response).username, JSON.parse(xhr.response).password);
         }
     }
 
@@ -145,3 +161,40 @@ function addUser(login, password) {
 }
 
 
+function sendMessage(message, username) {
+
+    const datetime = new Date().toISOString();
+
+    const messageObject = {
+        datetime: datetime,
+        message: message,
+        username: username
+    };
+
+    console.log(messageObject);
+
+
+    let xhr = new XMLHttpRequest();
+
+    xhr.open('POST', 'https://studentschat.herokuapp.com/messages');
+
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    xhr.send(JSON.stringify(messageObject));
+
+    xhr.onload = function () {
+        console.log(JSON.parse(xhr.response));
+        if (!JSON.parse(xhr.response).status) {
+            alert('Failed to send message');
+        }else if (xhr.status !== 200) {
+            alert(xhr.status + ': ' + xhr.statusText);
+        }
+    }
+
+    xhr.onerror = function () {
+        alert('Запрос не удался');
+    }
+
+    textInput.value = '';
+
+}
