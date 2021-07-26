@@ -1,6 +1,10 @@
 'use strict'
 
 var currentUser;
+const LOGINURL = 'https://studentschat.herokuapp.com/users/login';
+const USERLISTURL = 'https://studentschat.herokuapp.com/users/';
+const REGISTERURL = 'https://studentschat.herokuapp.com/users/register';
+const SENDMESSAGEURL = 'https://studentschat.herokuapp.com/messages';
 
 const userList = document.getElementById('userlist');
 const registerLink = document.getElementById('register_link');
@@ -17,11 +21,11 @@ const loggedInSpan = document.getElementById('loggedin');
 const textInput = document.getElementById('inputtxt');
 const sendBtn = document.getElementById('send_btn');
 
-sendBtn.addEventListener('click', () => sendMessage(textInput.value, loggedInSpan.textContent))
+sendBtn.addEventListener('click', () => sendMessage(textInput.value, loggedInSpan.textContent));
 
 textInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
-        sendMessage(textInput.value, currentUser)
+        sendMessage(textInput.value, currentUser);
     }
 });
 
@@ -59,7 +63,7 @@ function renewUsersList() {
     
     let xhr = new XMLHttpRequest();
     
-    xhr.open('GET', 'https://studentschat.herokuapp.com/users/');
+    xhr.open('GET', USERLISTURL );
     
     xhr.send();
     
@@ -98,7 +102,7 @@ function login(login, password) {
 
     let xhr = new XMLHttpRequest();
 
-        xhr.open('POST', 'https://studentschat.herokuapp.com/users/login');
+        xhr.open('POST', LOGINURL);
         xhr.setRequestHeader('Content-Type', 'application/json');
 
         xhr.send(JSON.stringify(user));
@@ -137,7 +141,7 @@ function addUser(login, password) {
 
     let xhr = new XMLHttpRequest();
 
-    xhr.open('POST', 'https://studentschat.herokuapp.com/users/register');
+    xhr.open('POST', REGISTERURL);
 
     xhr.setRequestHeader('Content-Type', 'application/json');
 
@@ -152,6 +156,7 @@ function addUser(login, password) {
         } else if (xhr.status == 200) {
             login(JSON.parse(xhr.response).username, JSON.parse(xhr.response).password);
         }
+
     }
 
     xhr.onerror = function () {
@@ -176,7 +181,7 @@ function sendMessage(message, username) {
 
     let xhr = new XMLHttpRequest();
 
-    xhr.open('POST', 'https://studentschat.herokuapp.com/messages');
+    xhr.open('POST', SENDMESSAGEURL);
 
     xhr.setRequestHeader('Content-Type', 'application/json');
 
