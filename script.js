@@ -92,7 +92,7 @@ function renewUsersList() {
 }
 
 renewUsersList();
-setInterval(renewUsersList, 10000);
+setInterval(renewUsersList, 15000);
 
 function login(login, password) {
 
@@ -193,6 +193,8 @@ function sendMessage(message, username) {
             alert('Failed to send message');
         }else if (xhr.status !== 200) {
             alert(xhr.status + ': ' + xhr.statusText);
+        } else {
+            textInput.value = '';
         }
     }
 
@@ -200,6 +202,5 @@ function sendMessage(message, username) {
         alert('Запрос не удался');
     }
 
-    textInput.value = '';
 
 }
