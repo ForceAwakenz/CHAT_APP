@@ -170,6 +170,8 @@ function sendMessage(message, username) {
 
     const datetime = new Date().toISOString();
 
+    if (message == '') return;
+
     const messageObject = {
         datetime: datetime,
         message: message,
