@@ -14,15 +14,16 @@ const passwordRegTxt = document.getElementById('password_reg');
 const loggedInSpan = document.getElementById('loggedin');
 const textInput = document.getElementById('inputtxt');
 const sendBtn = document.getElementById('send_btn');
+const logoutBtn = document.getElementById('logout_btn')
 const chatWindow = document.getElementById('chat');
 
 sendBtn.addEventListener('click', () => {
-    new Message(currentUser, textInput.value).send()
+    new Message(currentUser.username, textInput.value).send(MESSAGEURL);
 });
 
 textInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
-        new Message(currentUser, textInput.value).send();
+        new Message(currentUser.username, textInput.value).send(MESSAGEURL);
     }
 });
 
@@ -32,7 +33,6 @@ if (!!registerLink) {
         // loginModal.classList.add('modal_hidden');
         registerModal.style.display = 'flex';
         loginModal.style.display = 'none';
-
     });
 }
 
@@ -40,16 +40,22 @@ if (!!loginLink) {
     loginLink.addEventListener('click', () => {
         loginModal.style.display = 'flex';
         registerModal.style.display = 'none';
-
     });
 }
 
-submitBtn.addEventListener('click', () =>
-    login(nicknameTxt.value, passwordTxt.value)
-);
+submitBtn.addEventListener('click', () => {
+    login(nicknameTxt.value, passwordTxt.value);
+});
 
 submitBtnReg.addEventListener('click', () =>
     addUser(nicknameRegTxt.value, passwordRegTxt.value)
+);
+
+logoutBtn.addEventListener('click', () => {
+    currentUser.send(LOGOUTURL)
+    loggedInSpan.textContent = '';
+    loginModal.style.display = 'flex';
+    }
 );
 
 

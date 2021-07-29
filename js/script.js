@@ -1,10 +1,12 @@
 'use strict'
 
-var currentUser;
+var currentUser = {};
+var allMessages;
 const LOGINURL = 'https://studentschat.herokuapp.com/users/login';
+const LOGOUTURL = 'https://studentschat.herokuapp.com/users/logout';
 const USERLISTURL = 'https://studentschat.herokuapp.com/users/';
 const REGISTERURL = 'https://studentschat.herokuapp.com/users/register';
-const SENDMESSAGEURL = 'https://studentschat.herokuapp.com/messages';
+const MESSAGEURL = 'https://studentschat.herokuapp.com/messages';
 
 class Message {
 
@@ -15,42 +17,99 @@ class Message {
         this.chatroomId = chatroomId;
     }
 
-    send() {
-
-        if (!this.message) return;
-
-        // if (this.message == '') return;
-    
-        let xhr = new XMLHttpRequest();
-    
-        xhr.open('POST', SENDMESSAGEURL);
-    
-        xhr.setRequestHeader('Content-Type', 'application/json');
-    
-        xhr.send(JSON.stringify(this));
-    
-        xhr.onload = function () {
-            console.log(JSON.parse(xhr.response));
-            if (!JSON.parse(xhr.response).status) {
-                alert('Failed to send message');
-            }else if (xhr.status !== 200) {
-                alert(xhr.status + ': ' + xhr.statusText);
-            } else {
-                textInput.value = '';
-            }
-        }
-    
-        xhr.onerror = function () {
-            alert('Запрос не удался');
-        }
-
-    }
-
     parseFromInput() {
 
     }
 
 }
+
+Message.prototype.send = send;
+currentUser.send = send;
+
+function send(url) {
+
+    if (url === 'https://studentschat.herokuapp.com/messages') {
+        if (!this.message) return;
+    }
+
+    let xhr = new XMLHttpRequest();
+
+    xhr.open('POST', url);
+
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    xhr.send(JSON.stringify(this));
+
+    xhr.onload = function () {
+        console.log(JSON.parse(xhr.response));
+        if (!JSON.parse(xhr.response).status) {
+            alert('Failed to send message');
+        }else if (xhr.status !== 200) {
+            alert(xhr.status + ': ' + xhr.statusText);
+        } else {
+
+            switch (url) {
+                case 'https://studentschat.herokuapp.com/messages':
+                    textInput.value = '';
+                    get(MESSAGEURL);
+                    break;
+                case 'https://studentschat.herokuapp.com/users/logout':
+
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    xhr.onerror = function () {
+        alert('Запрос не удался');
+    }
+
+}
+
+function get(url) {
+
+    let xhr = new XMLHttpRequest();
+    
+    xhr.open('GET', url);
+    
+    xhr.send();
+    
+    xhr.onload = function () {
+        if (xhr.status !== 200) {
+            alert((`Ошибка ${xhr.status}: ${xhr.statusText}`));
+        } else {
+            const data = JSON.parse(xhr.responseText);
+
+            switch (url) {
+                case 'https://studentschat.herokuapp.com/messages':
+                    printMessages(data)
+                    break;
+                default:
+                    break;
+            };
+
+
+        }
+    }
+    
+    xhr.onerror = function () {
+        alert('Запрос не удался');
+    }
+}
+
+
+
+function printMessages(data) {
+    allMessages = data;
+    const htmlMessages = data.reduce((output, element) =>
+    output + 
+    `<div class="message"><span class="name-span">${element.username}: </span>${element.message}</div>`, '');
+    chat.innerHTML = htmlMessages;
+}
+
+
 
 // new Message('Test User', 'Hi there').send();
 
@@ -99,6 +158,9 @@ function renewUsersList() {
 renewUsersList();
 setInterval(renewUsersList, 15000);
 
+get(MESSAGEURL);
+setInterval(() => get(MESSAGEURL), 5000);
+
 function login(login, password) {
 
     let user = {};
@@ -121,9 +183,9 @@ function login(login, password) {
                     console.log(userObject);
                     if (!!userObject[0].user_id) {
                         loginModal.style.display = 'none';
-                        currentUser = userObject[0].username;
+                        currentUser.username = userObject[0].username;
                         // loggedInSpan.innerText = userObject[0].username;
-                        loggedInSpan.innerText = currentUser;
+                        loggedInSpan.innerText = currentUser.username;
                     }
                 } catch(e) {
                     alert('Not valid input: ' + e.message);
@@ -171,47 +233,44 @@ function addUser(login, password) {
 }
 
 
-function sendMessage(message, username) {
+// function sendMessage(message, username) {
 
-    const datetime = new Date().toISOString();
+//     const datetime = new Date().toISOString();
 
-    if (message == '') return;
+//     if (message == '') return;
 
-    const messageObject = {
-        datetime: datetime,
-        message: message,
-        username: username
-    };
+//     const messageObject = {
+//         datetime: datetime,
+//         message: message,
+//         username: username
+//     };
 
-    console.log(messageObject);
-
-
-    let xhr = new XMLHttpRequest();
-
-    xhr.open('POST', SENDMESSAGEURL);
-
-    xhr.setRequestHeader('Content-Type', 'application/json');
-
-    xhr.send(JSON.stringify(messageObject));
-
-    xhr.onload = function () {
-        console.log(JSON.parse(xhr.response));
-        if (!JSON.parse(xhr.response).status) {
-            alert('Failed to send message');
-        }else if (xhr.status !== 200) {
-            alert(xhr.status + ': ' + xhr.statusText);
-        } else {
-            textInput.value = '';
-        }
-    }
-
-    xhr.onerror = function () {
-        alert('Запрос не удался');
-    }
+//     console.log(messageObject);
 
 
-}
+//     let xhr = new XMLHttpRequest();
 
-function getMessages() {
-    //
-}
+//     xhr.open('POST', MESSAGEURL);
+
+//     xhr.setRequestHeader('Content-Type', 'application/json');
+
+//     xhr.send(JSON.stringify(messageObject));
+
+//     xhr.onload = function () {
+//         console.log(JSON.parse(xhr.response));
+//         if (!JSON.parse(xhr.response).status) {
+//             alert('Failed to send message');
+//         }else if (xhr.status !== 200) {
+//             alert(xhr.status + ': ' + xhr.statusText);
+//         } else {
+//             textInput.value = '';
+//         }
+//     }
+
+//     xhr.onerror = function () {
+//         alert('Запрос не удался');
+//     }
+
+
+// }
+
