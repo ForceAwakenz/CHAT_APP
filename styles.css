@@ -284,3 +284,14 @@ nav {
 .modal a {
   font-size: 0.9rem;
 }
+
+/*
+
+example of beautiful transition
+
+.countries {
+  opacity: 0;
+  transition: opacity 3s;
+}
+
+*/
