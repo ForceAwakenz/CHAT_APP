@@ -101,6 +101,14 @@ nav {
   align-items: center;
 }
 
+.message {
+  margin: 5px;
+}
+
+.message > .name-span {
+  color: #283887;
+}
+
 .modal {
   height: 100vh;
   width: 100vw;
@@ -284,3 +292,14 @@ nav {
 .modal a {
   font-size: 0.9rem;
 }
+
+/*
+
+example of beautiful transition
+
+.countries {
+  opacity: 0;
+  transition: opacity 3s;
+}
+
+*/

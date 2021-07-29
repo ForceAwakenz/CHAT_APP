@@ -12,10 +12,38 @@ class Message {
         this.username = currentUserName;
         this.datetime = new Date().toISOString();
         this.message = message;
+        this.chatroomId = chatroomId;
     }
 
-    send() { // может вынести сэнд из класса?
+    send() {
+
         if (!this.message) return;
+
+        // if (this.message == '') return;
+    
+        let xhr = new XMLHttpRequest();
+    
+        xhr.open('POST', SENDMESSAGEURL);
+    
+        xhr.setRequestHeader('Content-Type', 'application/json');
+    
+        xhr.send(JSON.stringify(this));
+    
+        xhr.onload = function () {
+            console.log(JSON.parse(xhr.response));
+            if (!JSON.parse(xhr.response).status) {
+                alert('Failed to send message');
+            }else if (xhr.status !== 200) {
+                alert(xhr.status + ': ' + xhr.statusText);
+            } else {
+                textInput.value = '';
+            }
+        }
+    
+        xhr.onerror = function () {
+            alert('Запрос не удался');
+        }
+
     }
 
     parseFromInput() {
@@ -24,13 +52,13 @@ class Message {
 
 }
 
-console.log(new Message('Test User', 'Hi there'));
+// new Message('Test User', 'Hi there').send();
 
-class User {
-    constructor(username, password) {
+// class User {
+//     constructor(username, password) {
 
-    }
-}
+//     }
+// }
 
 
 
@@ -185,5 +213,5 @@ function sendMessage(message, username) {
 }
 
 function getMessages() {
-    
+    //
 }
