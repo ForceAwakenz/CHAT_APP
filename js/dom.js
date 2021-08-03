@@ -27,10 +27,29 @@ textInput.addEventListener('keydown', (e) => {
     }
 });
 
+
+submitBtn.addEventListener('click', () => {
+    login(nicknameTxt.value, passwordTxt.value);
+
+    currentUser.nickname = nicknameTxt.value;
+    currentUser.password = passwordTxt.value;
+    
+
+});
+
+submitBtnReg.addEventListener('click', () =>
+    addUser(nicknameRegTxt.value, passwordRegTxt.value)
+);
+
+logoutBtn.addEventListener('click', () => {
+    currentUser.send(LOGOUTURL);
+    loggedInSpan.textContent = '';
+    loginModal.style.display = 'flex';
+}
+);
+
 if (!!registerLink) {
     registerLink.addEventListener('click', () => {
-        // registerModal.classList.add('modal_visible');
-        // loginModal.classList.add('modal_hidden');
         registerModal.style.display = 'flex';
         loginModal.style.display = 'none';
     });
@@ -42,21 +61,5 @@ if (!!loginLink) {
         registerModal.style.display = 'none';
     });
 }
-
-submitBtn.addEventListener('click', () => {
-    login(nicknameTxt.value, passwordTxt.value);
-});
-
-submitBtnReg.addEventListener('click', () =>
-    addUser(nicknameRegTxt.value, passwordRegTxt.value)
-);
-
-logoutBtn.addEventListener('click', () => {
-    currentUser.send(LOGOUTURL)
-    loggedInSpan.textContent = '';
-    loginModal.style.display = 'flex';
-    }
-);
-
 
 // countriesContainer.insertAdjacentText('beforeend', msg);

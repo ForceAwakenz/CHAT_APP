@@ -2,11 +2,12 @@
 
 var currentUser = {};
 var allMessages;
-const LOGINURL = 'https://studentschat.herokuapp.com/users/login';
-const LOGOUTURL = 'https://studentschat.herokuapp.com/users/logout';
-const USERLISTURL = 'https://studentschat.herokuapp.com/users/';
-const REGISTERURL = 'https://studentschat.herokuapp.com/users/register';
-const MESSAGEURL = 'https://studentschat.herokuapp.com/messages';
+const SERVER = 'https://studentschat.herokuapp.com';
+const LOGINURL = `${SERVER}/users/login`;
+const LOGOUTURL = `${SERVER}/users/logout`;
+const USERLISTURL = `${SERVER}/users`;
+const REGISTERURL = `${SERVER}/users/register`;
+const MESSAGEURL = `${SERVER}/messages`;
 
 class Message {
 
@@ -17,10 +18,6 @@ class Message {
         this.chatroomId = chatroomId;
     }
 
-    parseFromInput() {
-
-    }
-
 }
 
 Message.prototype.send = send;
@@ -28,33 +25,32 @@ currentUser.send = send;
 
 function send(url) {
 
-    if (url === 'https://studentschat.herokuapp.com/messages') {
+    if (url === MESSAGEURL) {
         if (!this.message) return;
     }
 
     let xhr = new XMLHttpRequest();
 
     xhr.open('POST', url);
-
     xhr.setRequestHeader('Content-Type', 'application/json');
-
     xhr.send(JSON.stringify(this));
 
     xhr.onload = function () {
         console.log(JSON.parse(xhr.response));
         if (!JSON.parse(xhr.response).status) {
-            alert('Failed to send message');
+            alert('Failed to send request');
         }else if (xhr.status !== 200) {
             alert(xhr.status + ': ' + xhr.statusText);
         } else {
 
             switch (url) {
-                case 'https://studentschat.herokuapp.com/messages':
+                case MESSAGEURL:
                     textInput.value = '';
                     get(MESSAGEURL);
                     break;
-                case 'https://studentschat.herokuapp.com/users/logout':
-
+                case LOGOUTURL:
+                    clearInterval(renewList);
+                    clearInterval(renewMessages);
                     break;
                 default:
                     break;
@@ -83,8 +79,11 @@ function get(url) {
             const data = JSON.parse(xhr.responseText);
 
             switch (url) {
-                case 'https://studentschat.herokuapp.com/messages':
-                    printMessages(data)
+                case MESSAGEURL:
+                    printMessages(data);
+                    break;
+                case USERLISTURL:
+                    refreshUserList(data);
                     break;
                 default:
                     break;
@@ -99,8 +98,6 @@ function get(url) {
     }
 }
 
-
-
 function printMessages(data) {
     allMessages = data;
     const htmlMessages = data.reduce((output, element) =>
@@ -109,57 +106,23 @@ function printMessages(data) {
     chat.innerHTML = htmlMessages;
 }
 
-
-
-// new Message('Test User', 'Hi there').send();
-
-// class User {
-//     constructor(username, password) {
-
-//     }
-// }
-
-
-
-
-function renewUsersList() {
-
+function refreshUserList(data) {
+    const htmlListOfUsers = data.reduce((output, element) =>
+    output + 
+    ((element.status !== 'active') ?
+        `<li class="inactive_user" style="color: #222">${element.username}</li>` :
+            `<li>${element.username}</li>`), '');
     
-    let xhr = new XMLHttpRequest();
-    
-    xhr.open('GET', USERLISTURL );
-    
-    xhr.send();
-    
-    xhr.onload = function () {
-        if (xhr.status !== 200) {
-            alert((`Ошибка ${xhr.status}: ${xhr.statusText}`));
-        } else {
-            const listOfUsers = JSON.parse(xhr.responseText);
-
-            const htmlListOfUsers = listOfUsers.reduce((output, element) =>
-                output + 
-                ((element.status !== 'active') ?
-                    `<li class="inactive_user" style="color: #222">${element.username}</li>` :
-                    `<li>${element.username}</li>`), '');
-            userList.innerHTML = htmlListOfUsers;
-            console.log(listOfUsers);
-
-        }
-    }
-    
-    xhr.onerror = function () {
-        alert('Запрос не удался');
-    }
-    
+    userList.innerHTML = htmlListOfUsers;
+    console.log(data);
 
 }
 
-renewUsersList();
-setInterval(renewUsersList, 15000);
+get(USERLISTURL);
+let renewList = setInterval(() => get(USERLISTURL), 15000);
 
 get(MESSAGEURL);
-setInterval(() => get(MESSAGEURL), 5000);
+let renewMessages = setInterval(() => get(MESSAGEURL), 5000);
 
 function login(login, password) {
 
@@ -274,3 +237,10 @@ function addUser(login, password) {
 
 // }
 
+
+
+// class User {
+//     constructor(username, password) {
+
+//     }
+// }
