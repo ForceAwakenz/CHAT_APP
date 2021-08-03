@@ -208,7 +208,7 @@ nav {
   margin-left: 3vw;
 }
 
-#txt > #inputtxt {
+#txt #inputtxt {
   font-size: 1.7rem;
   border-radius: 8px;
   border: 1px solid #0d5706;

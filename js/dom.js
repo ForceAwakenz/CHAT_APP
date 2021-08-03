@@ -7,14 +7,14 @@ const loginModal = document.getElementById('login_box');
 const registerModal = document.getElementById('register_box');
 const submitBtn = document.getElementById('submit_btn');
 const submitBtnReg = document.getElementById('submit_btn_reg');
-const nicknameTxt = document.getElementById('nickname');
+const usernameTxt = document.getElementById('username');
 const passwordTxt = document.getElementById('password');
-const nicknameRegTxt = document.getElementById('nickname_reg');
+const usernameRegTxt = document.getElementById('username_reg');
 const passwordRegTxt = document.getElementById('password_reg');
 const loggedInSpan = document.getElementById('loggedin');
 const textInput = document.getElementById('inputtxt');
 const sendBtn = document.getElementById('send_btn');
-const logoutBtn = document.getElementById('logout_btn')
+const logoutBtn = document.getElementById('logout_btn');
 const chatWindow = document.getElementById('chat');
 
 sendBtn.addEventListener('click', () => {
@@ -29,17 +29,21 @@ textInput.addEventListener('keydown', (e) => {
 
 
 submitBtn.addEventListener('click', () => {
-    login(nicknameTxt.value, passwordTxt.value);
 
-    currentUser.nickname = nicknameTxt.value;
+    currentUser.username = usernameTxt.value;
     currentUser.password = passwordTxt.value;
-    
+
+    currentUser.send(LOGINURL);
 
 });
 
-submitBtnReg.addEventListener('click', () =>
-    addUser(nicknameRegTxt.value, passwordRegTxt.value)
-);
+submitBtnReg.addEventListener('click', () =>{
+    
+    currentUser.username = usernameRegTxt.value;
+    currentUser.password = passwordRegTxt.value;
+    
+    currentUser.send(REGISTERURL);
+});
 
 logoutBtn.addEventListener('click', () => {
     currentUser.send(LOGOUTURL);

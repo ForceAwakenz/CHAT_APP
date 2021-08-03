@@ -23,11 +23,12 @@ class Message {
 Message.prototype.send = send;
 currentUser.send = send;
 
+
 function send(url) {
 
     if (url === MESSAGEURL) {
         if (!this.message) return;
-    }
+    } // ^ If I'll need more checks here - pack checks into a function
 
     let xhr = new XMLHttpRequest();
 
@@ -36,30 +37,19 @@ function send(url) {
     xhr.send(JSON.stringify(this));
 
     xhr.onload = function () {
-        console.log(JSON.parse(xhr.response));
-        if (!JSON.parse(xhr.response).status) {
-            alert('Failed to send request');
-        }else if (xhr.status !== 200) {
+
+        const response = JSON.parse(xhr.response);
+        console.log(response);
+            
+        if (xhr.status !== 200) {
             alert(xhr.status + ': ' + xhr.statusText);
         } else {
-
-            switch (url) {
-                case MESSAGEURL:
-                    textInput.value = '';
-                    get(MESSAGEURL);
-                    break;
-                case LOGOUTURL:
-                    clearInterval(renewList);
-                    clearInterval(renewMessages);
-                    break;
-                default:
-                    break;
-            }
+            checkAndDo(url, response);
         }
     }
 
     xhr.onerror = function () {
-        alert('Запрос не удался');
+        alert('Failed to send request');
     }
 
 }
@@ -69,7 +59,6 @@ function get(url) {
     let xhr = new XMLHttpRequest();
     
     xhr.open('GET', url);
-    
     xhr.send();
     
     xhr.onload = function () {
@@ -89,13 +78,49 @@ function get(url) {
                     break;
             };
 
-
         }
     }
     
     xhr.onerror = function () {
-        alert('Запрос не удался');
+        alert('Failed to send request');
     }
+}
+
+
+function checkAndDo(url, response) {
+
+    switch (url) {
+        case MESSAGEURL:
+            if (response.status !== 'ok') {
+                alert('Failed to send a message');
+                break;
+            }
+        textInput.value = '';
+        get(MESSAGEURL);
+        break;
+        case LOGINURL:
+            if (!response[0]['user_id']) {
+                alert('Failed to login');
+                break;
+            }
+            login(response);
+            break;
+        case LOGOUTURL:
+            clearInterval(renewList);
+            clearInterval(renewMessages);
+            break;
+        case REGISTERURL:
+            if (!response.id) {
+                alert('Failed to register');
+                break;
+            }
+            login(response);
+            break;
+        default:
+            console.log('Error with input url into send function occured');
+            break;
+    }
+
 }
 
 function printMessages(data) {
@@ -114,133 +139,26 @@ function refreshUserList(data) {
             `<li>${element.username}</li>`), '');
     
     userList.innerHTML = htmlListOfUsers;
-    console.log(data);
 
 }
 
-get(USERLISTURL);
-let renewList = setInterval(() => get(USERLISTURL), 15000);
+function login(data) {
+    try {
+        if (!!data[0]?.user_id || !!data.username) {
+            loginModal.style.display = 'none';
+            registerModal.style.display = 'none';
 
-get(MESSAGEURL);
+            loggedInSpan.innerText = currentUser.username;
+
+            get(USERLISTURL);
+            get(MESSAGEURL);
+
+        }
+    } catch(e) {
+        alert('Not valid input: ' + e.message);
+    }
+}
+
+let renewList = setInterval(() => get(USERLISTURL), 15000);
 let renewMessages = setInterval(() => get(MESSAGEURL), 5000);
 
-function login(login, password) {
-
-    let user = {};
-    user.username = login;
-    user.password = password;
-
-    let xhr = new XMLHttpRequest();
-
-        xhr.open('POST', LOGINURL);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-
-        xhr.send(JSON.stringify(user));
-
-        xhr.onload = function () {
-            if (xhr.status !== 200) {
-                alert((`Ошибка ${xhr.status}: ${xhr.statusText}`));
-            } else {
-                try {
-                    const userObject = JSON.parse(xhr.response);
-                    console.log(userObject);
-                    if (!!userObject[0].user_id) {
-                        loginModal.style.display = 'none';
-                        currentUser.username = userObject[0].username;
-                        // loggedInSpan.innerText = userObject[0].username;
-                        loggedInSpan.innerText = currentUser.username;
-                    }
-                } catch(e) {
-                    alert('Not valid input: ' + e.message);
-                }
-            }
-        }
-    
-        xhr.onerror = function () {
-            alert('Запрос не удался');
-        }
-    
-}
-
-
-function addUser(login, password) {
-
-    let user = {};
-    user.username = login;
-    user.password = password;
-
-    let xhr = new XMLHttpRequest();
-
-    xhr.open('POST', REGISTERURL);
-
-    xhr.setRequestHeader('Content-Type', 'application/json');
-
-    xhr.send(JSON.stringify(user));
-
-    xhr.onload = function () {
-        console.log(JSON.parse(xhr.response));
-        if (!JSON.parse(xhr.response).id) {
-            alert('Failed to register');
-        }else if (xhr.status !== 200) {
-            alert(xhr.status + ': ' + xhr.statusText);
-        } else if (xhr.status == 200) {
-            login(JSON.parse(xhr.response).username, JSON.parse(xhr.response).password);
-        }
-
-    }
-
-    xhr.onerror = function () {
-        alert('Запрос не удался');
-    }
-    
-}
-
-
-// function sendMessage(message, username) {
-
-//     const datetime = new Date().toISOString();
-
-//     if (message == '') return;
-
-//     const messageObject = {
-//         datetime: datetime,
-//         message: message,
-//         username: username
-//     };
-
-//     console.log(messageObject);
-
-
-//     let xhr = new XMLHttpRequest();
-
-//     xhr.open('POST', MESSAGEURL);
-
-//     xhr.setRequestHeader('Content-Type', 'application/json');
-
-//     xhr.send(JSON.stringify(messageObject));
-
-//     xhr.onload = function () {
-//         console.log(JSON.parse(xhr.response));
-//         if (!JSON.parse(xhr.response).status) {
-//             alert('Failed to send message');
-//         }else if (xhr.status !== 200) {
-//             alert(xhr.status + ': ' + xhr.statusText);
-//         } else {
-//             textInput.value = '';
-//         }
-//     }
-
-//     xhr.onerror = function () {
-//         alert('Запрос не удался');
-//     }
-
-
-// }
-
-
-
-// class User {
-//     constructor(username, password) {
-
-//     }
-// }
