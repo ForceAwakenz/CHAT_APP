@@ -46,23 +46,18 @@ submitBtnReg.addEventListener('click', () =>{
 });
 
 logoutBtn.addEventListener('click', () => {
-    currentUser.send(LOGOUTURL);
-    loggedInSpan.textContent = '';
-    loginModal.style.display = 'flex';
-}
-);
+    currentUser.send(LOGOUTURL)
+});
 
 if (!!registerLink) {
-    registerLink.addEventListener('click', () => {
-        registerModal.style.display = 'flex';
-        loginModal.style.display = 'none';
+    registerLink.addEventListener('click', (e) => {
+        switchModals(e)
     });
 }
 
 if (!!loginLink) {
-    loginLink.addEventListener('click', () => {
-        loginModal.style.display = 'flex';
-        registerModal.style.display = 'none';
+    loginLink.addEventListener('click', (e) => {
+        switchModals(e)
     });
 }
 

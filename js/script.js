@@ -75,6 +75,7 @@ function get(url) {
                     refreshUserList(data);
                     break;
                 default:
+                    console.log('Error with input url into get function occured');
                     break;
             };
 
@@ -108,6 +109,8 @@ function checkAndDo(url, response) {
         case LOGOUTURL:
             clearInterval(renewList);
             clearInterval(renewMessages);
+            loggedInSpan.textContent = '';
+            loginModal.style.display = 'flex';
             break;
         case REGISTERURL:
             if (!response.id) {
@@ -162,3 +165,12 @@ function login(data) {
 let renewList = setInterval(() => get(USERLISTURL), 15000);
 let renewMessages = setInterval(() => get(MESSAGEURL), 5000);
 
+function switchModals(e) {
+    if (e.target.id == 'register_link') {
+        registerModal.style.display = 'flex';
+        loginModal.style.display = 'none';
+    } else if (e.target.id == 'login_link') {
+        loginModal.style.display = 'flex';
+        registerModal.style.display = 'none';
+    }
+}
