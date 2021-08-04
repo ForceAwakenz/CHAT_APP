@@ -1,7 +1,7 @@
 'use strict'
 
 var currentUser = {};
-var allMessages;
+var allMessages = [];
 const SERVER = 'https://studentschat.herokuapp.com';
 const LOGINURL = `${SERVER}/users/login`;
 const LOGOUTURL = `${SERVER}/users/logout`;
@@ -124,13 +124,17 @@ function checkAndDo(url, response) {
     }
 
 }
-
+// need to deal with it:
 function printMessages(data) {
-    allMessages = data;
-    const htmlMessages = data.reduce((output, element) =>
+    console.log(data);
+    allMessages = data.filter(message => !allMessages.includes(message));
+    console.log('Messages:', allMessages);
+
+    const htmlMessages = allMessages.reduce((output, element) =>
     output + 
     `<div class="message"><span class="name-span">${element.username}: </span>${element.message}</div>`, '');
     chat.innerHTML = htmlMessages;
+
     chat.scrollTo({
         top: chat.scrollHeight,
         left: 0,
@@ -142,9 +146,9 @@ function printMessages(data) {
 function refreshUserList(data) {
     const htmlListOfUsers = data.reduce((output, element) =>
     output + 
-    ((element.status !== 'active') ?
-        `<li class="inactive_user" style="color: #222">${element.username}</li>` :
-            `<li>${element.username}</li>`), '');
+        ((element.status !== 'active')
+            ? `<li class="inactive_user" style="color: #222">${element.username}</li>`
+            : `<li>${element.username}</li>`), '');
     
     userList.innerHTML = htmlListOfUsers;
 

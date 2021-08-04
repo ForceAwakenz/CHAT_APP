@@ -70,7 +70,11 @@ nav {
   height: 50vh;
   margin-right: 0;
   background: radial-gradient(#9fb5a7e5, #54966ecd), linear-gradient(#fff, #fff);
-  overflow: auto;
+  overflow-y: hidden;
+}
+
+#userlist_box:hover {
+  overflow-y: auto;
 }
 
 #chat-frame {
@@ -78,20 +82,40 @@ nav {
   height: 50vh;
   display: flex;
   justify-content: flex-start;
-  background: linear-gradient(30deg, #9fb5a7e5, #54966ecd),
-    linear-gradient(#fff, #fff);
+  background: linear-gradient(150deg, #9fb5a7e5 60%, #54966ecd),
+    linear-gradient(#ffffff80, #ffffff80);
+}
+
+#chat-wrap {
+  display: flex;
+  background: linear-gradient(90deg, #d3d3d3, #fff);
+  width: 75%;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 
 #chat {
   background: linear-gradient(90deg, #d3d3d3, #fff);
-  width: 75%;
-  height: 100%;
-  border-radius: 8px;
+  /* width: 75%; */
+  height: 96%;
+  /* border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px; */
+  overflow-y: hidden;
+  padding: 0 5px;
+  align-self: center;
+}
+
+#chat:hover {
   overflow-y: auto;
 }
 
 #chatlist {
-  overflow: auto;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+#chatlist:hover {
+  overflow-y: auto;
 }
 
 #input-panel {
