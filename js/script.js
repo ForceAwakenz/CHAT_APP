@@ -26,10 +26,6 @@ currentUser.send = send;
 
 function send(url) {
 
-    // if (url === MESSAGEURL) {
-    //     if (!this.message) return;
-    // } // ^ If I'll need more checks here - pack checks into a function
-
     let xhr = new XMLHttpRequest();
 
     xhr.open('POST', url);
@@ -39,13 +35,13 @@ function send(url) {
     xhr.onload = function () {
 
         const response = JSON.parse(xhr.response);
-        console.log(response);
             
         if (xhr.status !== 200) {
             alert(xhr.status + ': ' + xhr.statusText);
         } else {
             checkAndDo(url, response);
         }
+
     }
 
     xhr.onerror = function () {
@@ -62,6 +58,7 @@ function get(url) {
     xhr.send();
     
     xhr.onload = function () {
+
         if (xhr.status !== 200) {
             alert((`Ошибка ${xhr.status}: ${xhr.statusText}`));
         } else {
@@ -80,12 +77,13 @@ function get(url) {
             };
 
         }
+
     }
     
     xhr.onerror = function () {
         alert('Failed to send request');
     }
-    
+
 }
 
 
@@ -169,3 +167,4 @@ let renewList = setInterval(() => get(USERLISTURL), 15000);
 let renewMessages = setInterval(() => get(MESSAGEURL), 5000);
 
 
+// countriesContainer.insertAdjacentText('beforeend', msg);

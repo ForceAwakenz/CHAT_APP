@@ -18,17 +18,16 @@ const logoutBtn = document.getElementById('logout_btn');
 const chatWindow = document.getElementById('chat');
 
 sendBtn.addEventListener('click', () => {
-    if (!textInput.value) return;
+    if (!textInput.value.trim()) return;
     new Message(currentUser.username, textInput.value).send(MESSAGEURL);
 });
 
 textInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
-        if (!textInput.value) return;
+        if (!textInput.value.trim()) return;
         new Message(currentUser.username, textInput.value).send(MESSAGEURL);
     }
 });
-
 
 submitBtn.addEventListener('click', () => {
 
@@ -45,6 +44,7 @@ submitBtnReg.addEventListener('click', () =>{
     currentUser.password = passwordRegTxt.value;
     
     currentUser.send(REGISTERURL);
+
 });
 
 logoutBtn.addEventListener('click', () => {
@@ -73,4 +73,3 @@ function switchModals(e) {
     }
 }
 
-// countriesContainer.insertAdjacentText('beforeend', msg);
