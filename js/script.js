@@ -147,7 +147,7 @@ function refreshUserList(data) {
     const htmlListOfUsers = data.reduce((output, element) =>
     output + 
         ((element.status !== 'active')
-            ? `<li class="inactive_user" style="color: #222">${element.username}</li>`
+            ? `<li class="inactive_user">${element.username}</li>`
             : `<li>${element.username}</li>`), '');
     
     userList.innerHTML = htmlListOfUsers;

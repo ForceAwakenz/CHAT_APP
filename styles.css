@@ -44,7 +44,7 @@ main {
 }
 
 #logo {
-  background: radial-gradient(#a500c6, #460054);
+  background: radial-gradient(#a500c6, #4b2b55);
   width: 20vw;
   display: flex;
   justify-content: center;
@@ -177,7 +177,7 @@ nav {
 }
 
 .basic-box {
-  background: radial-gradient(#54966e, #136534);
+  background: radial-gradient(#54966e, #346039);
   border: #0d5706 1px solid;
 }
 
@@ -198,21 +198,38 @@ nav {
   align-self: flex-start;
 }
 
+#logout_btn:hover {
+  background: #bcd7bc;
+}
+
 #whois {
   margin: 10px 20px;
 }
 
 /* +++++++++++++++++  Center  +++++++++++++++++++++ */
 
+#userlist li.inactive_user {
+  color: #282828;
+}
+
+#userlist li.inactive_user:hover {
+  color: black;
+}
+
 #chatlist > .button {
   width: 17vw;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   margin: 15px 0;
+  cursor: default;
 }
 
 #chatlist > .button:not(.checked):hover {
   background: hsl(122, 26%, 79%);
+}
+
+#chatlist > .button.checked:hover {
+  color: #460054;
 }
 
 #chatlist > .button.checked {
@@ -253,7 +270,8 @@ nav {
 }
 
 #stylers-wrapper > .button:hover {
-  background: hsl(122, 26%, 79%);
+  background: #bcd7bc;
+  cursor: default;
 }
 
 #stylers-wrapper .text-stylers {
@@ -268,13 +286,13 @@ nav {
 }
 
 #send_btn {
-  background: radial-gradient(rgb(165, 0, 198), rgb(70, 0, 84));
+  background: radial-gradient(#a500c6, #4b2b55);
   color: white;
   width: 12vw;
 }
 
 #input-panel #send_btn.button:hover {
-  background: radial-gradient(rgb(215, 188, 212), rgb(70, 0, 84));
+  background: radial-gradient(#a500c6 25%, #4b2b55);
   color: #283887;
 }
 
