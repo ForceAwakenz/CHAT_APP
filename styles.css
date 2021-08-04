@@ -38,7 +38,7 @@ main {
   color: #283887;
   border-radius: 8px;
   font-size: 1.2rem;
-  margin: 15px 0;
+  margin: 5px 0;
   background: #5c9d5e;
   text-align: center;
 }
@@ -174,12 +174,17 @@ nav {
   align-self: flex-start;
 }
 
+#whois {
+  margin: 10px 20px;
+}
+
 /* +++++++++++++++++  Center  +++++++++++++++++++++ */
 
 #chatlist > .button {
   width: 17vw;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+  margin: 15px 0;
 }
 
 #chatlist > .button:not(.checked):hover {

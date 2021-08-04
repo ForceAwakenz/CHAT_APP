@@ -131,6 +131,11 @@ function printMessages(data) {
     output + 
     `<div class="message"><span class="name-span">${element.username}: </span>${element.message}</div>`, '');
     chat.innerHTML = htmlMessages;
+    chat.scrollTo({
+        top: chat.scrollHeight,
+        left: 0,
+        behaviour: 'smooth'
+    });
 
 }
 

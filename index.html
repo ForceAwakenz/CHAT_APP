@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlashChat</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script defer src="js/script.js"></script>
     <script defer src="js/dom.js"></script>
@@ -21,7 +21,7 @@
     </div>
     <nav class="key-element basic-box">
         <button class="button" id="logout_btn">Log Out</button>
-        <p>logged in as: &nbsp;<span id="loggedin"></span></p>
+        <p id="whois">logged in as: &nbsp;<span id="loggedin"></span></p>
     </nav>
 
     <div id="userlist_box" class="key-element basic-box">
@@ -39,14 +39,13 @@
             <div class="button">Johny Walker</div>
             <div class="button">Martin Eden</div>
             <div class="button">Elon Musk</div>
-            <div class="button">Johny Walker</div>
         </div>
     </div>
     <div id="input-panel" class="key-element basic-box">
         <div id="stylers-wrapper">
-            <div class="button text-stylers">B</div>
-            <div class="button text-stylers">U</div>
-            <div class="button text-stylers">I</div>
+            <div class="button text-stylers"><b>B</b></div>
+            <div class="button text-stylers"><u>U</u></div>
+            <div class="button text-stylers"><i>I</i></div>
         </div>
         <div id="txt">
             <input type="text" id="inputtxt">
