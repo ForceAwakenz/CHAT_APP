@@ -126,9 +126,8 @@ function checkAndDo(url, response) {
 }
 // need to deal with it:
 function printMessages(data) {
-    console.log(data);
-    allMessages = data.filter(message => !allMessages.includes(message));
-    console.log('Messages:', allMessages);
+
+    allMessages = data;
 
     const htmlMessages = allMessages.reduce((output, element) =>
     output + 
