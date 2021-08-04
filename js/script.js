@@ -26,9 +26,9 @@ currentUser.send = send;
 
 function send(url) {
 
-    if (url === MESSAGEURL) {
-        if (!this.message) return;
-    } // ^ If I'll need more checks here - pack checks into a function
+    // if (url === MESSAGEURL) {
+    //     if (!this.message) return;
+    // } // ^ If I'll need more checks here - pack checks into a function
 
     let xhr = new XMLHttpRequest();
 

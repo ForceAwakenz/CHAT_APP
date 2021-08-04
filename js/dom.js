@@ -18,11 +18,13 @@ const logoutBtn = document.getElementById('logout_btn');
 const chatWindow = document.getElementById('chat');
 
 sendBtn.addEventListener('click', () => {
+    if (!textInput.value) return;
     new Message(currentUser.username, textInput.value).send(MESSAGEURL);
 });
 
 textInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
+        if (!textInput.value) return;
         new Message(currentUser.username, textInput.value).send(MESSAGEURL);
     }
 });
