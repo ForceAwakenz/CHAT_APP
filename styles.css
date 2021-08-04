@@ -49,6 +49,8 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-shadow: 1px 1px 2px black;
+  box-shadow: 1px 1px 1px #413d21;
 }
 
 #logo.key-element {
@@ -63,6 +65,7 @@ nav {
   background: #0d3509;
   width: 75vw;
   height: 20vh;
+  box-shadow: 1px 1px 1px #0d3509;
 }
 
 #userlist_box {
@@ -71,6 +74,7 @@ nav {
   margin-right: 0;
   background: radial-gradient(#9fb5a7e5, #54966ecd), linear-gradient(#fff, #fff);
   overflow-y: hidden;
+  box-shadow: 1px 1px 1px #0d3509;
 }
 
 #userlist_box:hover {
@@ -84,6 +88,7 @@ nav {
   justify-content: flex-start;
   background: linear-gradient(150deg, #9fb5a7e5 60%, #54966ecd),
     linear-gradient(#ffffff40, #ffffff40);
+  box-shadow: 1px 1px 1px #0d3509;
 }
 
 #chat-wrap {
@@ -123,6 +128,7 @@ nav {
   display: flex;
   flex-direction: row;
   align-items: center;
+  box-shadow: 1px 1px 1px #0d3509;
 }
 
 .message {
@@ -199,6 +205,7 @@ nav {
 
 #logout_btn:hover {
   background: radial-gradient(#c6b50077, #4a9a4a);
+  text-shadow: 1px 1px 1px #5e6fc4;
 }
 
 #whois {
@@ -221,6 +228,7 @@ nav {
   border-bottom-left-radius: 0;
   margin: 15px 0;
   cursor: default;
+  box-shadow: -2px 2px 4px -1px #0d5706;
 }
 
 #chatlist > .button:not(.checked):hover {
@@ -266,11 +274,18 @@ nav {
 
 #stylers-wrapper > .button {
   border: 1px solid #0d5706;
+  box-shadow: 1px 2px 3px -1px #0d5706;
 }
 
 #stylers-wrapper > .button:hover {
   background: radial-gradient(#c6b50077, #4a9a4a);
   cursor: default;
+  text-shadow: 1px 1px 1px #5e6fc4;
+  box-shadow: 1px 2px 3px -1px #083e03;
+}
+
+#stylers-wrapper > .button:active {
+  background: #c6b50077;
 }
 
 #stylers-wrapper .text-stylers {
@@ -288,11 +303,14 @@ nav {
   background: radial-gradient(#c6b500, #55502b);
   color: white;
   width: 12vw;
+  text-shadow: 1px 1px 2px black;
+  transition: 0.4s;
 }
 
 #input-panel #send_btn.button:hover {
   background: radial-gradient(#c6b500 25%, #55502b);
   color: #283887;
+  text-shadow: 1px 1px 1px white;
 }
 
 /* +++++++++++++++++  Modal  +++++++++++++++++++++ */
