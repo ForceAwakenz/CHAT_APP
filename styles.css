@@ -169,6 +169,11 @@ nav {
   cursor: pointer;
 }
 
+#logout_btn {
+  flex-grow: 0;
+  align-self: flex-start;
+}
+
 /* +++++++++++++++++  Center  +++++++++++++++++++++ */
 
 #chatlist > .button {
@@ -204,7 +209,6 @@ nav {
 #txt {
   flex-basis: 56.25vw;
   display: flex;
-  /* justify-content: flex-start; */
   margin-left: 3vw;
 }
 

@@ -85,6 +85,7 @@ function get(url) {
     xhr.onerror = function () {
         alert('Failed to send request');
     }
+    
 }
 
 
@@ -96,8 +97,8 @@ function checkAndDo(url, response) {
                 alert('Failed to send a message');
                 break;
             }
-        textInput.value = '';
-        get(MESSAGEURL);
+            textInput.value = '';
+            get(MESSAGEURL);
         break;
         case LOGINURL:
             if (!response[0]['user_id']) {
@@ -132,6 +133,7 @@ function printMessages(data) {
     output + 
     `<div class="message"><span class="name-span">${element.username}: </span>${element.message}</div>`, '');
     chat.innerHTML = htmlMessages;
+
 }
 
 function refreshUserList(data) {
@@ -160,17 +162,10 @@ function login(data) {
     } catch(e) {
         alert('Not valid input: ' + e.message);
     }
+
 }
 
 let renewList = setInterval(() => get(USERLISTURL), 15000);
 let renewMessages = setInterval(() => get(MESSAGEURL), 5000);
 
-function switchModals(e) {
-    if (e.target.id == 'register_link') {
-        registerModal.style.display = 'flex';
-        loginModal.style.display = 'none';
-    } else if (e.target.id == 'login_link') {
-        loginModal.style.display = 'flex';
-        registerModal.style.display = 'none';
-    }
-}
+

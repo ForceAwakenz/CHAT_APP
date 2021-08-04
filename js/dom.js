@@ -61,4 +61,14 @@ if (!!loginLink) {
     });
 }
 
+function switchModals(e) {
+    if (e.target.id == 'register_link') {
+        registerModal.style.display = 'flex';
+        loginModal.style.display = 'none';
+    } else if (e.target.id == 'login_link') {
+        loginModal.style.display = 'flex';
+        registerModal.style.display = 'none';
+    }
+}
+
 // countriesContainer.insertAdjacentText('beforeend', msg);
