@@ -127,47 +127,41 @@ function checkAndDo(url, response) {
 // need to deal with it:
 function printMessages(data) {
 
-    const lastMessageUser = data[data.length - 1].username;
-    const lastMessageTime = data[data.length - 1].datetime;
+    // console.log(allMessages.length);
 
-    console.log(lastMessageTime, lastMessageUser);
+    if (allMessages.length == data.length) {
+        return;
+    } else if (allMessages.length === 0) {
 
-    const lastMessageIndex = data.findIndex(function (elem) {
-        console.log(elem);
-        return (elem.username === lastMessageUser
-            && elem.datetime === lastMessageTime);
-    });
-
-    const newMessages = data.slice(lastMessageIndex);
-
-    allMessages.concat()
-
-    console.log(lastMessageIndex);
-
-
-    allMessages = data;
-
-// ==================================================
-
-    // const lastMessageUser = allMessages[allMessages.length - 1].username;
-    // const lastMessageTime = allMessages[allMessages.length - 1].datetime;
-    
-    if (allMessages.length < data.length) {
+        const htmlMessages = data.reduce((output, element) =>
+        output + 
+            `<div class="message"><span class="name-span">${element.username}: </span>${element.message}</div>`, '');
         
+        chat.innerHTML = htmlMessages;
+        allMessages = data;
+
+    } else {
+
+        // Checking by last message instead of just comparing lengths
+        // Is more secure way though little more complicated
+        const lastMessageUser = allMessages[allMessages.length - 1].username;
+        const lastMessageTime = allMessages[allMessages.length - 1].datetime;
+    
+        const lastMessageIndex = data.findIndex(function (elem) {
+            return (elem.username === lastMessageUser
+                && elem.datetime === lastMessageTime);
+        });
+    
+        const newMessages = data.slice(lastMessageIndex+1);
+        
+        const htmlMessages = newMessages.reduce((output, element) =>
+        output + 
+        `<div class="message"><span class="name-span">${element.username}: </span>${element.message}</div>`, '');
+        
+        chat.innerHTML += htmlMessages;
+        allMessages = data;
+
     }
-
-
-
-
-
-
-// ==================================================
-
-    const htmlMessages = allMessages.reduce((output, element) =>
-    output + 
-    `<div class="message"><span class="name-span">${element.username}: </span>${element.message}</div>`, '');
-    chat.innerHTML = htmlMessages;
-    // chat.insertAdjacentText('beforeend', htmlMessages);
 
     chat.scrollTo({
         top: chat.scrollHeight,

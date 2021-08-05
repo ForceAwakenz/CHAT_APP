@@ -104,6 +104,7 @@ nav {
 #chat {
   background: linear-gradient(90deg, #d3d3d3, #fff);
   height: 98%;
+  width: 100%;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
   overflow-y: hidden;
