@@ -27,6 +27,12 @@ main {
   flex-direction: row;
 }
 
+div.key-element,
+nav.key-element {
+  transition: opacity 2s;
+  opacity: 0.1;
+}
+
 .key-element:not(#chat) {
   margin: 1.5vh auto;
   border-radius: 8px;
@@ -200,6 +206,7 @@ nav {
   padding: 10px;
   display: flex;
   flex-direction: row-reverse;
+  justify-content: flex-start;
 }
 
 #audio {
@@ -208,7 +215,6 @@ nav {
 }
 
 #logout_btn {
-  flex-grow: 0;
   align-self: flex-start;
 }
 
@@ -219,6 +225,22 @@ nav {
 
 #whois {
   margin: 10px 20px;
+}
+
+#music {
+  font-size: 2.4rem;
+}
+
+#music:hover {
+  cursor: pointer;
+}
+
+.music_on {
+  text-shadow: 1px 1px 2px #083e03;
+}
+
+.music_off {
+  text-shadow: 1px 1px 2px#808080;
 }
 
 /* +++++++++++++++++  Center  +++++++++++++++++++++ */
@@ -376,6 +398,16 @@ nav {
 
 .modal a {
   font-size: 0.9rem;
+}
+
+#submit_btn,
+#submit_btn_reg {
+  border-radius: 4px;
+}
+
+#submit_btn:hover,
+#submit_btn_reg:hover {
+  background-color: #d0d0d0;
 }
 
 /*

@@ -96,6 +96,7 @@ function checkAndDo(url, response) {
                 break;
             }
             textInput.value = '';
+            audioClick.play();
             get(MESSAGEURL);
         break;
         case LOGINURL:
@@ -161,6 +162,8 @@ function printMessages(data) {
         chat.innerHTML += htmlMessages;
         allMessages = data;
 
+        audioClick.play();
+
     }
 
     chat.scrollTo({
@@ -190,6 +193,7 @@ function login(data) {
             loginModal.style.display = 'none';
             registerModal.style.display = 'none';
 
+            beautifulTransition(0);
             loggedInSpan.innerText = currentUser.username;
 
             get(USERLISTURL);

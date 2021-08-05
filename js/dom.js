@@ -16,6 +16,12 @@ const textInput = document.getElementById('inputtxt');
 const sendBtn = document.getElementById('send_btn');
 const logoutBtn = document.getElementById('logout_btn');
 const chatWindow = document.getElementById('chat');
+const audioClick = document.getElementById('audio_click');
+
+const keyElements = document.querySelectorAll("div.key-element, nav.key-element");
+
+
+audioClick.volume = 0.4;
 
 sendBtn.addEventListener('click', () => {
     if (!textInput.value.trim()) return;
@@ -48,18 +54,21 @@ submitBtnReg.addEventListener('click', () =>{
 });
 
 logoutBtn.addEventListener('click', () => {
-    currentUser.send(LOGOUTURL)
+    currentUser.send(LOGOUTURL);
+    keyElements.forEach(element => {
+        element.style.opacity = 0.1;
+    });
 });
 
 if (!!registerLink) {
     registerLink.addEventListener('click', (e) => {
-        switchModals(e)
+        switchModals(e);
     });
 }
 
 if (!!loginLink) {
     loginLink.addEventListener('click', (e) => {
-        switchModals(e)
+        switchModals(e);
     });
 }
 
@@ -73,3 +82,26 @@ function switchModals(e) {
     }
 }
 
+function beautifulTransition (i) {
+
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            if (i >= keyElements.length - 1) {
+                return resolve();
+            } else {
+                // keyElements[i].addEventListener('transitionend',
+                resolve(beautifulTransition(i + 1));
+            }
+        }, 400);
+        keyElements[i].style.opacity = 1;
+    });
+
+}
+
+    // if (i > keyElements.length - 1) {
+    //     return;
+    // } else {
+    //     keyElements[i].addEventListener('transitionend',
+    //         beautifulTransition(i+1));
+    //     keyElements[i].style.opacity = 1;
+    // }
