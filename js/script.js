@@ -172,7 +172,9 @@ function printMessages(data) {
 }
 
 function refreshUserList(data) {
-    const htmlListOfUsers = data.reduce((output, element) =>
+    const htmlListOfUsers = data
+        .filter(element => currentUser.username != element.username)
+        .reduce((output, element) =>
     output + 
         ((element.status !== 'active')
             ? `<li class="inactive_user">${element.username}</li>`
@@ -203,5 +205,3 @@ function login(data) {
 let renewList = setInterval(() => get(USERLISTURL), 15000);
 let renewMessages = setInterval(() => get(MESSAGEURL), 5000);
 
-
-// countriesContainer.insertAdjacentText('beforeend', msg);
