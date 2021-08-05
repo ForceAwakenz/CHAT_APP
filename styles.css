@@ -185,11 +185,15 @@ nav {
 #userlist_box li {
   color: #283887;
   cursor: pointer;
+  padding-left: 8px;
+  transition: background-color 0.1s;
 }
 
 #userlist_box li:hover {
   color: #55502b;
   cursor: pointer;
+  background: #ffffff25;
+  border-radius: 3px;
 }
 
 #userlist_box li {
