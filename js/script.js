@@ -127,12 +127,47 @@ function checkAndDo(url, response) {
 // need to deal with it:
 function printMessages(data) {
 
+    const lastMessageUser = data[data.length - 1].username;
+    const lastMessageTime = data[data.length - 1].datetime;
+
+    console.log(lastMessageTime, lastMessageUser);
+
+    const lastMessageIndex = data.findIndex(function (elem) {
+        console.log(elem);
+        return (elem.username === lastMessageUser
+            && elem.datetime === lastMessageTime);
+    });
+
+    const newMessages = data.slice(lastMessageIndex);
+
+    allMessages.concat()
+
+    console.log(lastMessageIndex);
+
+
     allMessages = data;
+
+// ==================================================
+
+    // const lastMessageUser = allMessages[allMessages.length - 1].username;
+    // const lastMessageTime = allMessages[allMessages.length - 1].datetime;
+    
+    if (allMessages.length < data.length) {
+        
+    }
+
+
+
+
+
+
+// ==================================================
 
     const htmlMessages = allMessages.reduce((output, element) =>
     output + 
     `<div class="message"><span class="name-span">${element.username}: </span>${element.message}</div>`, '');
     chat.innerHTML = htmlMessages;
+    // chat.insertAdjacentText('beforeend', htmlMessages);
 
     chat.scrollTo({
         top: chat.scrollHeight,

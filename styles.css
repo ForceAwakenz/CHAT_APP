@@ -72,8 +72,10 @@ nav {
   width: 20vw;
   height: 50vh;
   margin-right: 0;
-  background: radial-gradient(#9fb5a7e5, #54966ecd), linear-gradient(#fff, #fff);
+  background: radial-gradient(#9fb5a7e5 30%, #54966ecd 110%),
+    radial-gradient(#ffffff72, #ffffff40);
   overflow-y: hidden;
+  border: 0;
   box-shadow: 1px 1px 1px #0d3509;
 }
 
@@ -139,6 +141,11 @@ nav {
   color: #283887;
   /* cursor: s-resize; */
 }
+
+/* .message > .name-span:hover {
+  text-decoration: underline;
+  color: #083e03;
+} */
 
 .modal {
   height: 100vh;
@@ -272,7 +279,7 @@ nav {
   border: 1px solid #0d5706;
   flex-basis: 56.25vw;
   outline: 0;
-  padding-left: 3px;
+  padding: 3px;
 }
 
 #inputtxt:active,
