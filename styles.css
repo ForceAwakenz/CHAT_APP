@@ -137,6 +137,7 @@ nav {
 
 .message > .name-span {
   color: #283887;
+  /* cursor: s-resize; */
 }
 
 .modal {
@@ -204,7 +205,7 @@ nav {
 }
 
 #logout_btn:hover {
-  background: radial-gradient(#c6b50077, #4a9a4a);
+  background: radial-gradient(#ffffff77, #4a9a4a);
   text-shadow: 1px 1px 1px #5e6fc4;
 }
 
@@ -265,11 +266,18 @@ nav {
   margin-left: 3vw;
 }
 
-#txt #inputtxt {
+#inputtxt {
   font-size: 1.7rem;
   border-radius: 8px;
   border: 1px solid #0d5706;
   flex-basis: 56.25vw;
+  outline: 0;
+  padding-left: 3px;
+}
+
+#inputtxt:active,
+#inputtxt:focus {
+  box-shadow: inset 0px 0px 0px 3px #c6b500;
 }
 
 #stylers-wrapper > .button {
@@ -278,14 +286,14 @@ nav {
 }
 
 #stylers-wrapper > .button:hover {
-  background: radial-gradient(#c6b50077, #4a9a4a);
+  background: radial-gradient(#ffffff77, #4a9a4a);
   cursor: default;
   text-shadow: 1px 1px 1px #5e6fc4;
   box-shadow: 1px 2px 3px -1px #083e03;
 }
 
 #stylers-wrapper > .button:active {
-  background: #c6b50077;
+  background: #ffffff77;
 }
 
 #stylers-wrapper .text-stylers {
@@ -300,7 +308,7 @@ nav {
 }
 
 #send_btn {
-  background: radial-gradient(#c6b500, #55502b);
+  background: radial-gradient(ellipse at top, #c6b500, #55502b);
   color: white;
   width: 12vw;
   text-shadow: 1px 1px 2px black;
@@ -308,7 +316,7 @@ nav {
 }
 
 #input-panel #send_btn.button:hover {
-  background: radial-gradient(#c6b500 25%, #55502b);
+  background: radial-gradient(ellipse at top, #c6b500 25%, #55502b);
   color: #283887;
   text-shadow: 1px 1px 1px white;
 }
