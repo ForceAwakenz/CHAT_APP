@@ -18,7 +18,7 @@ const logoutBtn = document.getElementById('logout_btn');
 const chatWindow = document.getElementById('chat');
 const audioClick = document.getElementById('audio_click');
 
-const keyElements = document.querySelectorAll("div.key-element, nav.key-element");
+const keyElements = document.querySelectorAll('div.key-element, nav.key-element');
 
 
 audioClick.volume = 0.4;
@@ -89,7 +89,6 @@ function beautifulTransition (i) {
             if (i >= keyElements.length - 1) {
                 return resolve();
             } else {
-                // keyElements[i].addEventListener('transitionend',
                 resolve(beautifulTransition(i + 1));
             }
         }, 400);
@@ -97,11 +96,3 @@ function beautifulTransition (i) {
     });
 
 }
-
-    // if (i > keyElements.length - 1) {
-    //     return;
-    // } else {
-    //     keyElements[i].addEventListener('transitionend',
-    //         beautifulTransition(i+1));
-    //     keyElements[i].style.opacity = 1;
-    // }

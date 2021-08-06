@@ -1,13 +1,11 @@
+/* +++++++++++++++++  General  +++++++++++++++++++++ */
+
 *,
 *::after,
 *::before {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-a {
-  text-decoration: none;
 }
 
 html,
@@ -21,6 +19,10 @@ body {
   z-index: -10;
 }
 
+a {
+  text-decoration: none;
+}
+
 main {
   display: flex;
   flex-wrap: wrap;
@@ -29,7 +31,7 @@ main {
 
 div.key-element,
 nav.key-element {
-  transition: opacity 2s;
+  transition: opacity 1.8s;
   opacity: 0.1;
 }
 
@@ -48,6 +50,8 @@ nav.key-element {
   background: #5c9d5e;
   text-align: center;
 }
+
+/* +++++++++++++++++  Big Boys  +++++++++++++++++++++ */
 
 #logo {
   background: radial-gradient(#c6b500, #55502b);
@@ -142,22 +146,35 @@ nav {
 
 .message {
   margin: 5px;
+  /* transition: 2s; */
+  transition: background-color 2s;
 }
 
 .message > .name-span {
   color: #283887;
-  /* cursor: s-resize; */
 }
 
-/* .message > .name-span:hover {
+.message > .name-span:not(.currentUser) {
+  cursor: s-resize;
+}
+
+.message > .name-span:not(.currentUser):hover {
   text-decoration: underline;
-  color: #083e03;
-} */
+  color: #55502b;
+}
+
+.new-message {
+  background-color: #c6b500;
+  border-radius: 5px;
+  width: fit-content;
+  padding: 1px 5px;
+  margin: -1px;
+}
 
 .modal {
   height: 100vh;
   width: 100vw;
-  background-color: rgba(177, 177, 177, 0.742);
+  background-color: #b1b1b1bd;
   position: absolute;
   left: 0;
   top: 0;
@@ -228,9 +245,9 @@ nav {
   margin: 10px 20px;
 }
 
-#music {
+/* #music {
   font-size: 2.2rem;
-  /* justify-self: flex-end; */
+  justify-self: flex-end;
   flex-wrap: wrap-reverse;
   align-self: flex-end;
   order: -1;
@@ -246,7 +263,7 @@ nav {
 
 .music_off {
   text-shadow: 1px 1px 2px#808080;
-}
+} */
 
 /* +++++++++++++++++  Center  +++++++++++++++++++++ */
 
@@ -277,6 +294,10 @@ nav {
 
 #chatlist > .button.checked {
   background: white;
+}
+
+.currentUser {
+  font-weight: 700;
 }
 
 /* +++++++++++++++++  Bottom  +++++++++++++++++++++ */
@@ -427,14 +448,3 @@ html :is(#username, #password, #username_reg, #password_reg):hover,
 html :is(#username, #password, #username_reg, #password_reg):active {
   box-shadow: inset 0px 0px 0px 2px #c6b500;
 }
-
-/*
-
-example of beautiful transition
-
-.countries {
-  opacity: 0;
-  transition: opacity 3s;
-}
-
-*/

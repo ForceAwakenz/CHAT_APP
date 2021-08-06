@@ -1,7 +1,8 @@
 'use strict'
 
-var currentUser = {};
-var allMessages = [];
+let currentUser = {};
+let allMessages = [];
+let currentMessageHtml = '';
 const SERVER = 'https://studentschat.herokuapp.com';
 const LOGINURL = `${SERVER}/users/login`;
 const LOGOUTURL = `${SERVER}/users/logout`;
@@ -11,8 +12,8 @@ const MESSAGEURL = `${SERVER}/messages`;
 
 class Message {
 
-    constructor(currentUserName, message, chatroomId = 'MAIN') {
-        this.username = currentUserName;
+    constructor(username, message, chatroomId = 'MAIN') {
+        this.username = username;
         this.datetime = new Date().toISOString();
         this.message = message;
         this.chatroomId = chatroomId;
@@ -132,9 +133,15 @@ function printMessages(data) {
         return;
     } else if (allMessages.length === 0) {
 
-        const htmlMessages = data.reduce((output, element) =>
-        output + 
-            `<div class="message"><span class="name-span">${element.username}: </span>${element.message}</div>`, '');
+        const htmlMessages = data.reduce(function (output, element) {
+            const htmlMessage = (String(element.username) == String(currentUser.username))
+                ? `<div class="message"><span class="name-span currentUser">${element.username}: </span>${element.message}</div>`
+                : `<div class="message"><span class="name-span" title="respond">${element.username}: </span>${element.message}</div>`;
+            
+            return output + htmlMessage;
+
+        }, '');
+
         
         chat.innerHTML = htmlMessages;
         allMessages = data;
@@ -153,14 +160,31 @@ function printMessages(data) {
     
         const newMessages = data.slice(lastMessageIndex+1);
         
-        const htmlMessages = newMessages.reduce((output, element) =>
-        output + 
-        `<div class="message"><span class="name-span">${element.username}: </span>${element.message}</div>`, '');
+        const htmlMessages = newMessages.reduce(function (output, element) {
+            const htmlMessage = (String(element.username) == String(currentUser.username))
+                ? `<div class="message new-message"><span class="name-span currentUser">${element.username}: </span>${element.message}</div>`
+                : `<div class="message new-message"><span class="name-span" title="respond">${element.username}: </span>${element.message}</div>`;
+            
+            return output + htmlMessage;
+
+        }, '');
         
         chat.innerHTML += htmlMessages;
         allMessages = data;
 
         audioClick.play();
+
+        const freshMessages = document.querySelectorAll('.new-message');
+        freshMessages.forEach(message => {
+            message.addEventListener('transitionend', () =>
+            {
+                // транзишин энд не происходит
+                console.log('this');
+                message.classList.remove('new-message')
+                
+                }
+            );
+        });
 
     }
 
@@ -179,7 +203,7 @@ function refreshUserList(data) {
     output + 
         ((element.status !== 'active')
             ? `<li class="inactive_user">${element.username}</li>`
-            : `<li>${element.username}</li>`), '');
+                : `<li>${element.username}</li>`), '');
     
     userList.innerHTML = htmlListOfUsers;
 
