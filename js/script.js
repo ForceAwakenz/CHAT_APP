@@ -125,10 +125,8 @@ function checkAndDo(url, response) {
     }
 
 }
-// need to deal with it:
-function printMessages(data) {
 
-    // console.log(allMessages.length);
+function printMessages(data) {
 
     if (allMessages.length == data.length) {
         return;

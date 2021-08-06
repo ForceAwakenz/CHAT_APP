@@ -187,6 +187,7 @@ nav {
   cursor: pointer;
   padding-left: 8px;
   transition: background-color 0.1s;
+  overflow-x: hidden;
 }
 
 #userlist_box li:hover {
@@ -213,18 +214,14 @@ nav {
   justify-content: flex-start;
 }
 
-#audio {
-  margin: -5px 20px;
-  cursor: pointer;
-}
-
 #logout_btn {
   align-self: flex-start;
+  text-shadow: 1px 1px 1px #5e6fc4;
 }
 
 #logout_btn:hover {
   background: radial-gradient(#ffffff77, #4a9a4a);
-  text-shadow: 1px 1px 1px #5e6fc4;
+  text-shadow: 0px 0px 1px #5e6fc4;
 }
 
 #whois {
@@ -232,7 +229,11 @@ nav {
 }
 
 #music {
-  font-size: 2.4rem;
+  font-size: 2.2rem;
+  /* justify-self: flex-end; */
+  flex-wrap: wrap-reverse;
+  align-self: flex-end;
+  order: -1;
 }
 
 #music:hover {
@@ -346,7 +347,6 @@ nav {
   color: white;
   width: 12vw;
   text-shadow: 1px 1px 2px black;
-  transition: 0.4s;
 }
 
 #input-panel #send_btn.button:hover {
@@ -360,7 +360,7 @@ nav {
 #login,
 #register {
   width: 50vw;
-  height: 40vh;
+  height: 50vh;
   color: white;
   overflow: auto;
 }
@@ -412,6 +412,20 @@ nav {
 #submit_btn:hover,
 #submit_btn_reg:hover {
   background-color: #d0d0d0;
+}
+
+#username,
+#password,
+#username_reg,
+#password_reg {
+  border-radius: 4px;
+  padding: 3px;
+  outline: 0;
+}
+
+html :is(#username, #password, #username_reg, #password_reg):hover,
+html :is(#username, #password, #username_reg, #password_reg):active {
+  box-shadow: inset 0px 0px 0px 2px #c6b500;
 }
 
 /*
