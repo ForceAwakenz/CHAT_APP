@@ -109,20 +109,23 @@ removeReply.addEventListener('click', () => {
 })
 
 
-boldStyler.addEventListener('click', () =>
-    styleButtonToCheckbox(boldStyler));
+boldStyler.addEventListener('click', () => {
+    styleButtonToCheckbox(boldStyler, 'fontWeight', 'bold', 'normal');
+});
 underlineStyler.addEventListener('click', () =>
-    styleButtonToCheckbox(underlineStyler));
+    styleButtonToCheckbox(underlineStyler, 'text-decoration', 'underline', 'none'));
 italicStyler.addEventListener('click', () =>
-    styleButtonToCheckbox(italicStyler));
+    styleButtonToCheckbox(italicStyler, 'font-style', 'italic', 'normal'));
 
 
 
-function styleButtonToCheckbox(button) {
+function styleButtonToCheckbox(button, property, value, negativeValue) {
     if (button.classList.contains('checked')) {
         button.classList.remove('checked');
+        textInput.style[property]= negativeValue;
     } else {
         button.classList.add('checked');
+        textInput.style[property]= value;
     }
 }
 

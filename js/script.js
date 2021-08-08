@@ -125,7 +125,6 @@ function formReplyMessage() {
         })
     });
 
-    // console.log(`<span style="color:gray; font-style:italic;"> ${replyToUser.innerHTML} ${replyToMessage.innerHTML} </span>  ↩️ `);
 
     if (replyToMessage.innerHTML) {
         return `<span style="color:gray; font-style:italic;"> ${replyToUser.textContent}  ${replyToMessage.textContent} </span>  ↩️ `;
@@ -137,25 +136,28 @@ function formReplyMessage() {
 
 function produceStyledText() {
 
-    let styledText = '';
+    let styledText = textInput.value;
     var replyMessage = '';
 
     if (replyToUser) {
         replyMessage = formReplyMessage();
     }
-
-    styledText += (colorPicker.value != '#000000')
-        ? `<span style="color:${colorPicker.value}";>`
-        : '';
     
-    styledText += textInput.value;
+    if (boldStyler.classList.contains('checked')) {
+        styledText = `<b>` + styledText + `</b>`
+    }
+    if (underlineStyler.classList.contains('checked')) {
+        styledText = `<u>` + styledText + `</u>`
+    }
+    if (boldStyler.classList.contains('checked')) {
+        styledText = `<i>` + styledText + `</i>`
+    }
 
-    styledText += (colorPicker.value !== '#000000')
-    ? `</span>`
-        : '';
+    if (colorPicker.value !== '#000000') {
+        styledText = `<span style="color:${colorPicker.value}";>`
+            + styledText + `</span>`;
+    }
     
-    console.log(replyMessage);
-    console.log(styledText);
 
     return replyMessage + styledText;
     
