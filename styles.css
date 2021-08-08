@@ -130,6 +130,17 @@ nav {
   box-shadow: 1px 1px 1px #0d3509;
   color: white;
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#leftnav,
+#rightnav {
+  width: 50%;
+  display: flex;
+}
+
+#rightnav {
   flex-direction: row-reverse;
   justify-content: flex-start;
 }
@@ -155,8 +166,13 @@ nav {
   text-shadow: 0px 0px 1px #5e6fc4;
 }
 
-#whois {
+#whois,
+#time {
   margin: 10px 20px;
+}
+
+#time {
+  visibility: hidden;
 }
 
 /* #music {

@@ -12,6 +12,9 @@ const MESSAGEURL = `${SERVER}/messages`;
 
 let renewList;
 let renewMessages;
+let renewOnlineTimeCounter;
+
+let loginTime;
 
 class Message {
 
@@ -186,6 +189,7 @@ function checkAndDo(url, response) {
         case LOGOUTURL:
             clearInterval(renewList);
             clearInterval(renewMessages);
+            clearInterval(renewOnlineTimeCounter);
             loggedInSpan.textContent = '';
             loginModal.style.display = 'flex';
             break;
@@ -295,6 +299,9 @@ function login(data) {
             renewList = setInterval(() => get(USERLISTURL), 15000);
             renewMessages = setInterval(() => get(MESSAGEURL), 5000);
 
+            loginTime = new Date();
+            setTheDate();
+
             chat.scrollTo({
                 top: chat.scrollHeight,
                 left: 0,
@@ -306,5 +313,28 @@ function login(data) {
         alert('Not valid input: ' + e.message);
     }
 
+}
+
+function setTheDate() {
+
+    let formatedTime = '';
+
+    renewOnlineTimeCounter = setInterval(() => {
+
+        let timeRange = new Date() - loginTime;
+        formatedTime = '';
+
+        if (timeRange / 60 / 60 / 1000 >= 1) {
+            formatedTime += `${(timeRange / 1000 / 60 / 60 % 24).toFixed(0)} h `;
+        }
+        if (timeRange / 60 / 1000 >= 1) {
+            formatedTime += `${(timeRange / 1000 / 60 % 60).toFixed(0)} min `;
+        }
+
+        timeSpan.style.visibility = 'visible';
+        timeOnline.innerText = formatedTime;
+
+    }, 60000);
+    
 }
 

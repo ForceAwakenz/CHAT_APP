@@ -16,6 +16,8 @@ const loggedInSpan = document.getElementById('loggedin');
 const textInput = document.getElementById('inputtxt');
 const sendBtn = document.getElementById('send_btn');
 const logoutBtn = document.getElementById('logout_btn');
+const timeSpan = document.getElementById('time');
+const timeOnline = document.getElementById('time-online');
 const chatWindow = document.getElementById('chat');
 const audioClick = document.getElementById('audio_click');
 
