@@ -94,7 +94,7 @@ nav {
 }
 
 #chat-frame {
-  width: 75vw;
+  width: 74.7vw;
   height: 50vh;
   display: flex;
   justify-content: flex-start;
@@ -142,6 +142,7 @@ nav {
   flex-direction: row;
   align-items: center;
   box-shadow: 1px 1px 1px #0d3509;
+  padding-left: 1vw;
 }
 
 .message {
@@ -155,7 +156,7 @@ nav {
 }
 
 .message > .name-span:not(.currentUser) {
-  cursor: s-resize;
+  cursor: alias;
 }
 
 .message > .name-span:not(.currentUser):hover {
@@ -300,24 +301,49 @@ nav {
   font-weight: 700;
 }
 
+/* #bottom_userlist_bar {
+  height: 10%;
+  background-color: red;
+} */
+
 /* +++++++++++++++++  Bottom  +++++++++++++++++++++ */
 
 #stylers-wrapper {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   width: 20vw;
+  height: 90%;
+  overflow: auto;
 }
 
 #send-btn-wrapper {
   display: flex;
   justify-content: center;
-  width: 18vw;
-  margin-right: 0.75vw;
+  width: 20vw;
+}
+
+#stylers-wrapper table,
+td {
+  /* border: 1px solid black; */
+  border-collapse: collapse;
+}
+
+#stylers-wrapper td:hover {
+  cursor: pointer;
+  text-shadow: 0px 0px 4px white;
+}
+
+.pallete_elements {
+  height: 1.3vw;
+  width: 1.3vw;
+  font-size: 0.9rem;
+  margin: 3px;
 }
 
 #txt {
-  flex-basis: 56.25vw;
+  flex-basis: 61.3vw;
   display: flex;
   margin-left: 3vw;
 }
@@ -326,7 +352,8 @@ nav {
   font-size: 1.7rem;
   border-radius: 8px;
   border: 1px solid #0d5706;
-  flex-basis: 56.25vw;
+  flex-basis: 61.3vw;
+  margin-right: 0.75vw;
   outline: 0;
   padding: 3px;
 }
@@ -375,6 +402,25 @@ nav {
   color: #283887;
   text-shadow: 1px 1px 1px white;
 }
+
+#paintbrush {
+  background: url(img/paintbrush.png) center center/ 46% no-repeat, #5c9d5e;
+}
+
+#stylers-wrapper #paintbrush:hover {
+  background: url(img/paintbrush.png) center center/ 46% no-repeat,
+    radial-gradient(#ffffff77, #4a9a4a);
+}
+
+#stylers-wrapper #paintbrush:active {
+  background: url(img/paintbrush.png) center center/ 46% no-repeat, #ffffff77;
+}
+
+/* input,
+select,
+textarea {
+  color: red;
+} */
 
 /* +++++++++++++++++  Modal  +++++++++++++++++++++ */
 

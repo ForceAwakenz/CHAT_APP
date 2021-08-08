@@ -131,19 +131,9 @@ function printMessages(data) {
 
     if (allMessages.length == data.length) {
         return;
-    } else if (allMessages.length === 0) {
+    } else if (allMessages.length === 0 || allMessages.length > data.length) {
 
-        const htmlMessages = data.reduce(function (output, element) {
-            const htmlMessage = (String(element.username) == String(currentUser.username))
-                ? `<div class="message"><span class="name-span currentUser">${element.username}: </span>${element.message}</div>`
-                : `<div class="message"><span class="name-span" title="respond">${element.username}: </span>${element.message}</div>`;
-            
-            return output + htmlMessage;
-
-        }, '');
-
-        
-        chat.innerHTML = htmlMessages;
+        chat.innerHTML = constructHtmlMessages(data, false);
         allMessages = data;
 
     } else {
@@ -160,31 +150,24 @@ function printMessages(data) {
     
         const newMessages = data.slice(lastMessageIndex+1);
         
-        const htmlMessages = newMessages.reduce(function (output, element) {
-            const htmlMessage = (String(element.username) == String(currentUser.username))
-                ? `<div class="message new-message"><span class="name-span currentUser">${element.username}: </span>${element.message}</div>`
-                : `<div class="message new-message"><span class="name-span" title="respond">${element.username}: </span>${element.message}</div>`;
-            
-            return output + htmlMessage;
-
-        }, '');
-        
-        chat.innerHTML += htmlMessages;
+        chat.innerHTML += constructHtmlMessages(newMessages,true);
         allMessages = data;
 
         audioClick.play();
 
-        const freshMessages = document.querySelectorAll('.new-message');
-        freshMessages.forEach(message => {
-            message.addEventListener('transitionend', () =>
-            {
-                // транзишин энд не происходит
-                console.log('this');
-                message.classList.remove('new-message')
+        // const freshMessages = document.querySelectorAll('.new-message');
+        // console.log(freshMessages);
+        // freshMessages.forEach(message => {
+        //     console.log(message);
+        //     message.addEventListener('transitionend', () =>
+        //     {
+        //         // транзишин энд не происходит
+        //         console.log('this');
+        //         message.classList.remove('new-message')
                 
-                }
-            );
-        });
+        //         }
+        //     );
+        // });
 
     }
 
@@ -194,6 +177,25 @@ function printMessages(data) {
         behaviour: 'smooth'
     });
 
+}
+
+function constructHtmlMessages(inputData, ifNew) {
+
+    let classNewMessage = '';
+    if (ifNew) {
+        classNewMessage = 'new-message';
+    }
+    
+    const htmlMessages = inputData.reduce(function (output, element) {
+        const htmlMessage = (String(element.username) == String(currentUser.username))
+            ? `<div class="message ${classNewMessage}"><span class="name-span currentUser">${element.username}: </span>${element.message}</div>`
+            : `<div class="message ${classNewMessage}"><span class="name-span" title="respond">${element.username}: </span>${element.message}</div>`;
+        
+        return output + htmlMessage;
+
+    }, '');
+
+    return htmlMessages;
 }
 
 function refreshUserList(data) {
