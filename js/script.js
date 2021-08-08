@@ -2,7 +2,7 @@
 
 let currentUser = {};
 let allMessages = [];
-let currentMessageHtml = '';
+
 const SERVER = 'https://studentschat.herokuapp.com';
 const LOGINURL = `${SERVER}/users/login`;
 const LOGOUTURL = `${SERVER}/users/logout`;
@@ -23,6 +23,7 @@ class Message {
     }
 
 }
+
 
 Message.prototype.send = send;
 currentUser.send = send;
@@ -71,6 +72,7 @@ function get(url) {
             switch (url) {
                 case MESSAGEURL:
                     printMessages(data);
+                    formReplyMessage();
                     break;
                 case USERLISTURL:
                     refreshUserList(data);
@@ -88,6 +90,75 @@ function get(url) {
         alert('Failed to send request');
     }
 
+}
+
+function prepareAndSendMessage() {
+    if (!textInput.value.trim()) return;
+    const styledText = produceStyledText();
+    new Message(currentUser.username, styledText).send(MESSAGEURL);
+    replyToDiv.style.visibility = 'hidden';
+}
+
+function formReplyMessage() {
+
+    let messagesToReply = document.querySelectorAll('.name-span:not(.currentUser)');
+
+    messagesToReply.forEach(msg => {
+        msg.addEventListener('click', () => {
+
+            replyToDiv.style.visibility = 'visible';
+            replyToUser.innerHTML = msg.textContent;
+
+            replyToMessage.innerHTML =
+                msg
+                    .closest('div')
+                    .textContent
+                    .replace(msg.textContent, '')
+                    .slice(0, 10)
+                    .trim();
+
+            replyToMessage.innerHTML +=
+                (replyToMessage.innerHTML.length < 10)
+                    ? ''
+                    : '...';
+            
+        })
+    });
+
+    // console.log(`<span style="color:gray; font-style:italic;"> ${replyToUser.innerHTML} ${replyToMessage.innerHTML} </span>  ↩️ `);
+
+    if (replyToMessage.innerHTML) {
+        return `<span style="color:gray; font-style:italic;"> ${replyToUser.textContent}  ${replyToMessage.textContent} </span>  ↩️ `;
+    }
+
+        return '';
+
+}
+
+function produceStyledText() {
+
+    let styledText = '';
+    var replyMessage = '';
+
+    if (replyToUser) {
+        replyMessage = formReplyMessage();
+    }
+
+    styledText += (colorPicker.value != '#000000')
+        ? `<span style="color:${colorPicker.value}";>`
+        : '';
+    
+    styledText += textInput.value;
+
+    styledText += (colorPicker.value !== '#000000')
+    ? `</span>`
+        : '';
+    
+    console.log(replyMessage);
+    console.log(styledText);
+
+    return replyMessage + styledText;
+    
 }
 
 

@@ -42,19 +42,26 @@
         </div>
         <div id="chatlist">
             <div class="button checked">Main chat</div>
-            <div class="button">Johny Walker</div>
             <div class="button">Martin Eden</div>
             <div class="button">Elon Musk</div>
         </div>
     </div>
     <div id="input-panel" class="key-element basic-box">
         <div id="stylers-wrapper">
-                <div class="button text-stylers"><b>B</b></div>
-                <div class="button text-stylers"><u>U</u></div>
-                <div class="button text-stylers"><i>I</i></div>
+                <div class="button text-stylers" id="bold"><b>B</b></div>
+                <div class="button text-stylers" id="underline"><u>U</u></div>
+                <div class="button text-stylers" id="italic"><i>I</i></div>
         </div>
         <div id="main-input-wpapper">
-            <div id="reply-to">Reply to:</div>
+            
+            <div id="reply-to">
+                <span id="remove-reply">&#x2715;</span> 
+                &nbsp;Reply to: &nbsp;[
+                <span id="reply-to-user"></span>
+                &nbsp;
+                <span id="reply-to-message"></span>
+                ]
+            </div>
             <div id="text-and-color-wrapper">
                 <input type="color" name="color" id="color-picker">
                 <div class="button text-stylers" id="paintbrush"></div>
@@ -113,6 +120,7 @@
 </div>
 
 <audio src="Click.mp3" id="audio_click"></audio>
+
 
 </body>
 </html>
