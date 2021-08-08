@@ -158,19 +158,14 @@ function printMessages(data) {
 
         audioClick.play();
 
-        // const freshMessages = document.querySelectorAll('.new-message');
-        // console.log(freshMessages);
-        // freshMessages.forEach(message => {
-        //     console.log(message);
-        //     message.addEventListener('transitionend', () =>
-        //     {
-        //         // транзишин энд не происходит
-        //         console.log('this');
-        //         message.classList.remove('new-message')
-                
-        //         }
-        //     );
-        // });
+        const freshMessages = document.querySelectorAll('.new-message');
+        console.log(freshMessages);
+        freshMessages.forEach(message => {
+            console.log(message);
+            setTimeout(() => {
+                message.classList.remove('new-message');
+            }, 3000)
+        });
 
     }
 
@@ -228,13 +223,16 @@ function login(data) {
             renewList = setInterval(() => get(USERLISTURL), 15000);
             renewMessages = setInterval(() => get(MESSAGEURL), 5000);
 
+            chat.scrollTo({
+                top: chat.scrollHeight,
+                left: 0,
+                behaviour: 'smooth'
+            });
+
         }
     } catch(e) {
         alert('Not valid input: ' + e.message);
     }
 
 }
-
-// renewList = setInterval(() => get(USERLISTURL), 15000);
-// renewMessages = setInterval(() => get(MESSAGEURL), 5000);
 

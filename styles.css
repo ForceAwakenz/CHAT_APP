@@ -29,6 +29,10 @@ main {
   flex-direction: row;
 }
 
+::selection {
+  background-color: #c6b500c8;
+}
+
 div.key-element,
 nav.key-element {
   transition: opacity 1.8s;
@@ -146,9 +150,12 @@ nav {
 }
 
 .message {
-  margin: 5px;
+  margin: 1px;
   /* transition: 2s; */
-  transition: background-color 2s;
+  transition: background-color 7s;
+  border-radius: 5px;
+  width: fit-content;
+  padding: 2px 3px;
 }
 
 .message > .name-span {
@@ -166,10 +173,6 @@ nav {
 
 .new-message {
   background-color: #c6b500;
-  border-radius: 5px;
-  width: fit-content;
-  padding: 1px 5px;
-  margin: -1px;
 }
 
 .modal {
@@ -234,7 +237,7 @@ nav {
 
 #logout_btn {
   align-self: flex-start;
-  text-shadow: 1px 1px 1px #5e6fc4;
+  text-shadow: 1px 1px 1px #5e6fc425;
 }
 
 #logout_btn:hover {
@@ -342,6 +345,11 @@ td {
   margin: 3px;
 }
 
+/* #palette table .pallete_elements::active {
+  text-shadow: 0px 0px 40px #c6b500c8;
+  background-color: red !important;
+} */
+
 #txt {
   flex-basis: 61.3vw;
   display: flex;
@@ -376,7 +384,7 @@ td {
 }
 
 #stylers-wrapper > .button:active {
-  background: #ffffff77;
+  background: #daca1fbd;
 }
 
 #stylers-wrapper .text-stylers {
@@ -413,8 +421,12 @@ td {
 }
 
 #stylers-wrapper #paintbrush:active {
-  background: url(img/paintbrush.png) center center/ 46% no-repeat, #ffffff77;
+  background: url(img/paintbrush.png) center center/ 46% no-repeat, #daca1fbd;
 }
+
+/* #palette {
+  justify-self: auto;
+} */
 
 /* input,
 select,
