@@ -49,46 +49,36 @@
     </div>
     <div id="input-panel" class="key-element basic-box">
         <div id="stylers-wrapper">
-            <div class="button text-stylers"><b>B</b></div>
-            <div class="button text-stylers"><u>U</u></div>
-            <div class="button text-stylers"><i>I</i></div>
-            <div class="button text-stylers" id="paintbrush"></div>
-            <div id="palette">
-                <table>
-                    <tr>
-                        <td>
-                            <div class="pallete_elements">😊</div>
-                        </td>
-                        <td>
-                            <div class="pallete_elements">😂</div>
-                        </td>
-                        <td>
-                            <div class="pallete_elements">😜</div>
-                        </td>
-                        <td>
-                            <div class="pallete_elements">😎</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="pallete_elements">😕</div>
-                        </td>
-                        <td>
-                            <div class="pallete_elements">😦</div>
-                        </td>
-                        <td>
-                            <div class="pallete_elements">😈</div>
-                        </td>
-                        <td>
-                            <div class="pallete_elements">🙈</div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <!-- <div class="button text-stylers" id="smile">:)</div> -->
+                <div class="button text-stylers"><b>B</b></div>
+                <div class="button text-stylers"><u>U</u></div>
+                <div class="button text-stylers"><i>I</i></div>
         </div>
-        <div id="txt">
-            <input type="text" id="inputtxt">
+        <div id="main-input-wpapper">
+            <div id="reply-to">Reply to:</div>
+            <div id="text-and-color-wrapper">
+                <input type="color" name="color" id="color-picker">
+                <div class="button text-stylers" id="paintbrush"></div>
+                <div id="txt">
+                    <input type="text" id="inputtxt">
+                </div>
+            </div>
+            <div id="smiles">
+                <span class="smile">😊</span>
+                <span class="smile">😎</span>
+                <span class="smile">😦</span>
+                <span class="smile">😈</span>
+                <span class="smile">🙈</span>
+                <span class="smile">😂</span>
+                <span class="smile">😜</span>
+                <span class="smile">😕</span>
+                <span class="smile">💪</span>
+                <span class="smile">🤷‍♂️</span>
+                <span class="smile">👻</span>
+                <span class="smile">🥴</span>
+                <span class="smile">💥</span>
+                <span class="smile">🍷</span>
+                <span class="smile">🙃</span>
+            </div>
         </div>
         <div id="send-btn-wrapper">
             <button class="button" id="send_btn">Send</button>
@@ -98,7 +88,7 @@
 
 
 
-<div class="modal modal_hidden" id="register_box">
+<div class="modal hidden" id="register_box">
     <form id="register" class="basic-box key-element">
         <h2>Please register</h2>
         <label for="username_reg">Your Nickname</label>

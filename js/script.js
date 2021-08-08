@@ -135,6 +135,7 @@ function printMessages(data) {
     if (allMessages.length == data.length) {
         return;
     } else if (allMessages.length === 0 || allMessages.length > data.length) {
+        // I check for (allMessages.length > data.length) just to fix server reloads
 
         chat.innerHTML = constructHtmlMessages(data, false);
         allMessages = data;
@@ -159,9 +160,7 @@ function printMessages(data) {
         audioClick.play();
 
         const freshMessages = document.querySelectorAll('.new-message');
-        console.log(freshMessages);
         freshMessages.forEach(message => {
-            console.log(message);
             setTimeout(() => {
                 message.classList.remove('new-message');
             }, 3000)

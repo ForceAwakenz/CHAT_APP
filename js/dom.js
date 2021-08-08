@@ -17,6 +17,8 @@ const sendBtn = document.getElementById('send_btn');
 const logoutBtn = document.getElementById('logout_btn');
 const chatWindow = document.getElementById('chat');
 const audioClick = document.getElementById('audio_click');
+const paintBrush = document.getElementById('paintbrush');
+const colorPicker = document.getElementById('color-picker');
 
 const keyElements = document.querySelectorAll('div.key-element, nav.key-element');
 
@@ -71,6 +73,8 @@ if (!!loginLink) {
         switchModals(e);
     });
 }
+
+paintBrush.addEventListener('click', () => colorPicker.click());
 
 function switchModals(e) {
     if (e.target.id == 'register_link') {
