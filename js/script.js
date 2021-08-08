@@ -10,6 +10,9 @@ const USERLISTURL = `${SERVER}/users`;
 const REGISTERURL = `${SERVER}/users/register`;
 const MESSAGEURL = `${SERVER}/messages`;
 
+let renewList;
+let renewMessages;
+
 class Message {
 
     constructor(username, message, chatroomId = 'MAIN') {
@@ -222,6 +225,8 @@ function login(data) {
 
             get(USERLISTURL);
             get(MESSAGEURL);
+            renewList = setInterval(() => get(USERLISTURL), 15000);
+            renewMessages = setInterval(() => get(MESSAGEURL), 5000);
 
         }
     } catch(e) {
@@ -230,6 +235,6 @@ function login(data) {
 
 }
 
-let renewList = setInterval(() => get(USERLISTURL), 15000);
-let renewMessages = setInterval(() => get(MESSAGEURL), 5000);
+// renewList = setInterval(() => get(USERLISTURL), 15000);
+// renewMessages = setInterval(() => get(MESSAGEURL), 5000);
 
