@@ -1,0 +1,16 @@
+* {
+  font-size: 14px;
+}
+
+#whois {
+  font-size: 12px;
+}
+
+.extra {
+  display: none;
+}
+
+#main-input-wpapper,
+#txt {
+  flex-basis: 45vw;
+}

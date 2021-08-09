@@ -159,6 +159,7 @@ nav {
 #logout_btn {
   align-self: flex-start;
   text-shadow: 1px 1px 1px #5e6fc425;
+  padding: 1.2vh 1.2vw;
 }
 
 #logout_btn:hover {
@@ -240,6 +241,7 @@ nav {
   overflow-y: hidden;
   padding: 0 5px;
   align-self: center;
+  overflow-x: hidden;
 }
 
 #chat:hover {
@@ -376,7 +378,7 @@ nav {
 }
 
 #paintbrush {
-  background: url(img/paintbrush.png) center center/ 46% no-repeat, #5c9d5e;
+  background: url(../img/paintbrush.png) center center/ 46% no-repeat, #5c9d5e;
   height: 2.7rem;
   margin-right: -0.07vw;
   border-top-right-radius: 0;
@@ -384,12 +386,12 @@ nav {
 }
 
 #paintbrush:hover {
-  background: url(img/paintbrush.png) center center/ 46% no-repeat,
+  background: url(../img/paintbrush.png) center center/ 46% no-repeat,
     radial-gradient(#ffffff77, #4a9a4a);
 }
 
 #paintbrush:active {
-  background: url(img/paintbrush.png) center center/ 46% no-repeat, #daca1fbd;
+  background: url(../img/paintbrush.png) center center/ 46% no-repeat, #daca1fbd;
 }
 
 /* +++++++++++++++++++++++++++  Input txt */
