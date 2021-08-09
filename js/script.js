@@ -99,6 +99,8 @@ function prepareAndSendMessage() {
     if (!textInput.value.trim()) return;
     const styledText = produceStyledText();
     new Message(currentUser.username, styledText).send(MESSAGEURL);
+    replyToUser.textContent = '';
+    replyToMessage.textContent = '';
     replyToDiv.style.visibility = 'hidden';
 }
 
