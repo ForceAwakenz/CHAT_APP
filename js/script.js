@@ -193,6 +193,8 @@ function checkAndDo(url, response) {
             clearInterval(renewMessages);
             clearInterval(renewOnlineTimeCounter);
             loggedInSpan.textContent = '';
+            timeSpan.style.visibility = 'hidden';
+            timeOnline.style.visibility = 'hidden';
             loginModal.style.display = 'flex';
             break;
         case REGISTERURL:
@@ -334,6 +336,7 @@ function setTheDate() {
         }
 
         timeSpan.style.visibility = 'visible';
+        timeOnline.style.visibility = 'visible';
         timeOnline.innerText = formatedTime;
 
     }, 60000);
