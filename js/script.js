@@ -325,7 +325,7 @@ function setTheDate() {
         formatedTime = '';
 
         if (timeRange / 60 / 60 / 1000 >= 1) {
-            formatedTime += `${(timeRange / 1000 / 60 / 60 % 24).toFixed(0)} h `;
+            formatedTime += `${(timeRange / 1000 / 60 / 60).toFixed(0)} h `;
         }
         if (timeRange / 60 / 1000 >= 1) {
             formatedTime += `${(timeRange / 1000 / 60 % 60).toFixed(0)} min `;
