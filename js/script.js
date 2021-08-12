@@ -235,7 +235,7 @@ function printMessages(data) {
     
         const newMessages = data.slice(lastMessageIndex+1);
         
-        chat.innerHTML += constructHtmlMessages(newMessages,true);
+        chat.innerHTML += constructHtmlMessages(newMessages, true);
         allMessages = data;
 
         audioClick.play();

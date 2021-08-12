@@ -129,6 +129,7 @@ function styleButtonToCheckbox(button, property, value, negativeValue) {
         button.classList.add('checked');
         textInput.style[property]= value;
     }
+    textInput.focus();
 }
 
 function switchModals(e) {
