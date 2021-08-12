@@ -328,10 +328,10 @@ function setTheDate() {
         let timeRange = new Date() - loginTime;
         formatedTime = '';
 
-        if (timeRange / 60 / 60 / 1000 >= 1) {
+        if (timeRange / 60 / 60 / 1000 > 1) {
             formatedTime += `${(timeRange / 1000 / 60 / 60).toFixed(0)} h `;
         }
-        if (timeRange / 60 / 1000 >= 1) {
+        if (timeRange / 60 / 1000 > 1) {
             formatedTime += `${(timeRange / 1000 / 60 % 60).toFixed(0)} min `;
         }
 
