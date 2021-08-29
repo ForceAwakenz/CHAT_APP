@@ -154,7 +154,7 @@ function produceStyledText() {
     if (underlineStyler.classList.contains('checked')) {
         styledText = `<u>` + styledText + `</u>`
     }
-    if (boldStyler.classList.contains('checked')) {
+    if (italicStyler.classList.contains('checked')) {
         styledText = `<i>` + styledText + `</i>`
     }
 
